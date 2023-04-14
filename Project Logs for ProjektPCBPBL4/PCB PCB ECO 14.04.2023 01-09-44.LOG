@@ -1,0 +1,33 @@
+Removed Pin From Net: NetName=NetIC12_4 Pin=R13-1
+Removed Pin From Net: NetName=NetIC12_3 Pin=R13-2
+Removed Pin From Net: NetName=Vcc Pin=R20-1
+Removed Pin From Net: NetName=NetC20_2 Pin=R20-2
+Change Component Footprint: Designator=J01 Old Footprint=FTSH10501LDVKTR New Footprint=HDRV10W41P127_2X5_635X343X575P
+Change Component Footprint: Designator=J31 Old Footprint=FTSH10501LDVKTR New Footprint=HDRV10W41P127_2X5_635X343X575P
+Change Component Comment : Designator=J01 Old Comment=10 PIN JTAG New Comment=20021111-00010T4LF
+Change Component Comment : Designator=J31 Old Comment=FTSH-105-01-L-DV-K-TR New Comment=20021111-00010T4LF
+Change component parameters: Designator = "J01" ("J01"); Footprint = "FTSH10501LDVKTR"; UniqueID = "\GMUGHFXO\TLYRONIR" ("\GMUGHFXO\TLYRONIR")
+Change component parameters (AddParameter): Name = "Arrow Part Number"; Value = "20021111-00010T4LF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/20021111-00010t4lf/amphenol-fci?region=europe"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Link"; Value = "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/20021111.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "5.75mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Amphenol Communications Solutions"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "20021111-00010T4LF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Part Number"; Value = "649-221111-00010T4LF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Amphenol-FCI/20021111-00010T4LF?qs=nwYJ12Fl9gR8B5xkaYs9gA%3D%3D"; VariantName = "[No Variations]"
+Change component parameters: Designator = "J31" ("J31"); Footprint = "FTSH10501LDVKTR"; UniqueID = "\RBDYPNJR\KHAEUOHD" ("\RBDYPNJR\KHAEUOHD")
+Change component parameters (AddParameter): Name = "Arrow Part Number"; Value = "20021111-00010T4LF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Arrow Price/Stock"; Value = "https://www.arrow.com/en/products/20021111-00010t4lf/amphenol-fci?region=europe"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Datasheet Link"; Value = "https://cdn.amphenol-cs.com/media/wysiwyg/files/drawing/20021111.pdf"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Height"; Value = "5.75mm"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Amphenol Communications Solutions"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "20021111-00010T4LF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Part Number"; Value = "649-221111-00010T4LF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser Price/Stock"; Value = "https://www.mouser.co.uk/ProductDetail/Amphenol-FCI/20021111-00010T4LF?qs=nwYJ12Fl9gR8B5xkaYs9gA%3D%3D"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetIC12_3 Pin=R13-1
+Added Pin To Net: NetName=NetIC12_4 Pin=R13-2
+Added Pin To Net: NetName=NetC20_2 Pin=R20-1
+Added Pin To Net: NetName=Vcc Pin=R20-2
+Change Net Name : Old Net Name=NetC010_1 New Net Name=RESET
+Change Net Name : Old Net Name=NetMCU1_8 New Net Name=LPUART1_TX
+Change Net Name : Old Net Name=NetMCU1_9 New Net Name=LPUART1_RX
