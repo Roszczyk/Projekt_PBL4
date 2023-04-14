@@ -132,23 +132,6 @@ GenerateClassCluster=0
 DocumentUniqueId=CLKXZXMU
 
 [Document6]
-DocumentPath=..\BL653u.Harness
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document7]
 DocumentPath=..\CPU&POWER.Harness
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -165,7 +148,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document8]
+[Document7]
 DocumentPath=..\0402_CAP.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -182,7 +165,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document9]
+[Document8]
 DocumentPath=..\0402_RES.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -199,7 +182,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document10]
+[Document9]
 DocumentPath=..\0603_CAP.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -216,7 +199,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document11]
+[Document10]
 DocumentPath=..\0603_RES.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -233,7 +216,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document12]
+[Document11]
 DocumentPath=..\SamacSys.PcbLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -250,7 +233,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=
 
-[Document13]
+[Document12]
 DocumentPath=..\SamacSys.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -267,7 +250,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=NGLTGAHM
 
-[Document14]
+[Document13]
 DocumentPath=..\Zad1.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -284,7 +267,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=YMTNNYZG
 
-[Document15]
+[Document14]
 DocumentPath=..\PCB.PcbDoc
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -301,24 +284,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=TQKXYOQP
 
-[Document16]
-DocumentPath=..\DigitalSensors.Harness
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=1
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document17]
+[Document15]
 DocumentPath=..\SchemLib.SchLib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -335,7 +301,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=MLSLYVFC
 
-[Document18]
+[Document16]
 DocumentPath=..\Cap.Schlib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -352,7 +318,7 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=IRRFHQKA
 
-[Document19]
+[Document17]
 DocumentPath=..\RES.Schlib
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -368,6 +334,23 @@ ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=UUGWWCAC
+
+[Document18]
+DocumentPath=..\DigitalSensors.Harness
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
 
 [Configuration1]
 Name=Sources
