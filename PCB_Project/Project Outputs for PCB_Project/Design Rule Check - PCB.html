@@ -1,0 +1,746 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">17.04.2023</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">10:57:47</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc" class="file"><acronym title="C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc">C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">126</td></tr>
+</table>
+</td>
+</table><a name="IDB034WOYAS0KZP5AIVWNTV5CV0COOK1ZRAYDGAVHRAKYYWIVOCCPO"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGVQ3YGJV2JORKJ4P5I3WW55ENOIW2MACZ40J4KGYR420QXS50DSL">Clearance Constraint (Gap=0.102mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDMC3ERSKUFPIUL5CWX3Y3OTDECCL0RO1SNMMX1JIUF50Q4QCEXBEL">Clearance Constraint (Gap=0.2mm) (All),(All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID4BPPUBSWL2C2FCA2XNBMUOLQ0PO4FYUWOPFUED0Z4QSVIEA2UJ">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4XUMJJU4D5ODNSYLPOTUYJWQ4O1VMTHW3B2M14OARY3KPTTJZPVD">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">107</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWKAT4DAOUP4RKGKFJ413R4VP0DC4MJIO13GNGWDAYU1AVI2VKLVB">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDHA1SD1FNUD2WDCGJTVE5NBBOECSCXHAIW2KMUVP20UQJJPW21L1">Width Constraint (Min=0.15mm) (Max=3mm) (Preferred=0.2mm) (All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDGPYEMNDU1HU2MEFAKLGKCAGBJCZ0MHDHMMRORUET31ACVFQCH2FO">Width Constraint (Min=0.102mm) (Max=1816.048mm) (Preferred=0.102mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUBDRRXEQGQZDOFFFM5KXE5ZTZINOLQIF2RV04YCG3GDS1FLCNFLL">Power Plane Connect Rule(Relief Connect )(Expansion=0.5mm) (Conductor Width=0.4mm) (Air Gap=0.2mm) (Entries=4) (InPadClass('PowerPads'))</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDL2DPOIM552EDHBK25Q2ANPVUCNHUA10YZB3G5XM5PVNYX5UB1ELG">Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.2mm) (Air Gap=0.15mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDJXORJMFBYYA0KWCOZZKXDF5A1NHUQ004CVMMNOG2KFNMSONOMZ3B">Minimum Annular Ring (Minimum=0.076mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEJSFZGCS3I2PODQRBDBMO3LXGTWPN0K11I0Z4OFJ2RSWM4UZKRB">Hole Size Constraint (Min=0.15mm) (Max=6.3mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDPFMJ2ZZZNNTFHBGVQMHSN2TRFO0NBMA4NFPFGIE02RXADFNQB21N">Hole To Hole Clearance (Gap=0.25mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDOYXIOVOFD1TMNGDFSFV1XAHBRECAHQCX5LVYVLDZXOOYS0YMWV2P">Minimum Solder Mask Sliver (Gap=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDUQUEOZYARXRMPL4W2PAUUECZGBT3OYZRSPTNIIIWG4G2BGPJWNTI">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDT3Y0MTRDC4AICTMUD03T3WDHJ4QBAKK0MMT3REHIPDE2H2IIUHF">Silk to Silk (Clearance=0mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIML34N4WBKJFLDWS42ZMD5QNELI2NXDFZOCQEVPUDGGRIY20OQSD">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">1</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJM1LMH3MTIXCDKWIF1N14UK3VMXHJ4UNA0DWALGF2MH1MWEMVQCB">Board Clearance Constraint (Gap=0mm) (All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID4TG5O5OGD114M55DZ3JS5ZRINK3T1WK33U4OR5GCYADBDEBVB0NF">Height Constraint (Min=0mm) (Max=1816.048mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">126</td>
+</tr>
+</table><br><a name="IDMC3ERSKUFPIUL5CWX3Y3OTDECCL0RO1SNMMX1JIUF50Q4QCEXBEL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.2mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6395.483mil|Location2.X=6404.607mil|Location1.Y=1213.961mil|Location2.Y=1223.085mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6395.483mil|Location2.X=6404.607mil|Location1.Y=1213.961mil|Location2.Y=1223.085mil|Absolute=True">Clearance Constraint: (0.175mm &lt; 0.2mm) Between Pad MCU1-21(-14.929mm,6.372mm) on Top Layer And Track (-17.374mm,5.363mm)(-14.807mm,5.363mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.856mil|Location2.X=5587.98mil|Location1.Y=1593.042mil|Location2.Y=1602.166mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.856mil|Location2.X=5587.98mil|Location1.Y=1593.042mil|Location2.Y=1602.166mil|Absolute=True">Clearance Constraint: (0.077mm &lt; 0.2mm) Between Pad MOD31-16(-35.754mm,14.952mm) on Top Layer And Track (-36.304mm,15.052mm)(-35.481mm,15.875mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5450.208mil|Location2.X=5459.332mil|Location1.Y=1414.604mil|Location2.Y=1423.728mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5450.208mil|Location2.X=5459.332mil|Location1.Y=1414.604mil|Location2.Y=1423.728mil|Absolute=True">Clearance Constraint: (0.127mm &lt; 0.2mm) Between Pad MOD31-52(-39.004mm,10.402mm) on Top Layer And Track (-39.654mm,10.402mm)(-39.204mm,10.852mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6081.718mil|Location2.X=6087.967mil|Location1.Y=1521.875mil|Location2.Y=1528.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6081.718mil|Location2.X=6087.967mil|Location1.Y=1521.875mil|Location2.Y=1528.125mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.2mm) Between Pad U21-2(-23.04mm,13.331mm) on Top Layer And Track (-23.622mm,13.335mm)(-22.987mm,13.335mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5966.875mil|Location2.X=5973.125mil|Location1.Y=1441.875mil|Location2.Y=1448.125mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5966.875mil|Location2.X=5973.125mil|Location1.Y=1441.875mil|Location2.Y=1448.125mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.2mm) Between Track (-26.162mm,11.303mm)(-24.003mm,11.303mm) on Top Layer And Via (-26.162mm,11.303mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID4BPPUBSWL2C2FCA2XNBMUOLQ0PO4FYUWOPFUED0Z4QSVIEA2UJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Short-Circuit Constraint (Allowed=No) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6082.285mil|Location2.X=6101.572mil|Location1.Y=1515.356mil|Location2.Y=1534.644mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6082.285mil|Location2.X=6101.572mil|Location1.Y=1515.356mil|Location2.Y=1534.644mil|Absolute=True">Short-Circuit Constraint: Between Pad U21-2(-23.04mm,13.331mm) on Top Layer And Track (-23.622mm,13.335mm)(-22.987mm,13.335mm) on Top Layer Location : [X = 154.735mm][Y = 38.735mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5963.173mil|Location2.X=5979.762mil|Location1.Y=1436.706mil|Location2.Y=1453.294mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5963.173mil|Location2.X=5979.762mil|Location1.Y=1436.706mil|Location2.Y=1453.294mil|Absolute=True">Short-Circuit Constraint: Between Track (-26.162mm,11.303mm)(-24.003mm,11.303mm) on Top Layer And Via (-26.162mm,11.303mm) from Top Layer to Bottom Layer Location : [X = 151.675mm][Y = 36.703mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID4XUMJJU4D5ODNSYLPOTUYJWQ4O1VMTHW3B2M14OARY3KPTTJZPVD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6274.567mil|Location2.X=6345.433mil|Location1.Y=1782.284mil|Location2.Y=1940.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6274.567mil|Location2.X=6345.433mil|Location1.Y=1782.284mil|Location2.Y=1940.433mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad Bat1-1(-17.526mm,22.987mm) on Multi-Layer And Pad C02-2(-17.442mm,20.32mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6610.952mil|Location2.X=6799.37mil|Location1.Y=1449.579mil|Location2.Y=1722.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6610.952mil|Location2.X=6799.37mil|Location1.Y=1449.579mil|Location2.Y=1722.716mil|Absolute=True">Un-Routed Net Constraint: Net RESET Between Pad MCU1-4(-8.936mm,12.365mm) on Top Layer [Unplated] And Pad C010-1(-5.546mm,17.907mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6720.63mil|Location2.X=6909.37mil|Location1.Y=1687.284mil|Location2.Y=1722.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6720.63mil|Location2.X=6909.37mil|Location1.Y=1687.284mil|Location2.Y=1722.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C010-2(-6.646mm,17.907mm) on Top Layer [Unplated] And Pad C06-1(-2.752mm,17.907mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6677.766mil|Location2.X=6756.062mil|Location1.Y=1302.701mil|Location2.Y=1722.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6677.766mil|Location2.X=6756.062mil|Location1.Y=1302.701mil|Location2.Y=1722.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MCU1-32(-7.239mm,8.634mm) on Top Layer [Unplated] And Pad C010-2(-6.646mm,17.907mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6402.205mil|Location2.X=6756.062mil|Location1.Y=1687.284mil|Location2.Y=1741.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6402.205mil|Location2.X=6756.062mil|Location1.Y=1687.284mil|Location2.Y=1741.378mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U01-5(-14.859mm,18.381mm) on Top Layer [Unplated] And Pad C010-2(-6.646mm,17.907mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6295.592mil|Location2.X=6331.025mil|Location1.Y=1707.284mil|Location2.Y=1817.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6295.592mil|Location2.X=6331.025mil|Location1.Y=1707.284mil|Location2.Y=1817.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C01-2(-17.442mm,18.415mm) on Top Layer [Unplated] And Pad C02-2(-17.442mm,20.32mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6087.283mil|Location2.X=6331.025mil|Location1.Y=1707.284mil|Location2.Y=1756.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6087.283mil|Location2.X=6331.025mil|Location1.Y=1707.284mil|Location2.Y=1756.062mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C11-1(-22.733mm,18.754mm) on Top Layer [Unplated] And Pad C01-2(-17.442mm,18.415mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6212.283mil|Location2.X=6331.025mil|Location1.Y=1588.938mil|Location2.Y=1742.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6212.283mil|Location2.X=6331.025mil|Location1.Y=1588.938mil|Location2.Y=1742.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C23-2(-19.558mm,15.409mm) on Top Layer [Unplated] And Pad C01-2(-17.442mm,18.415mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6295.592mil|Location2.X=6427.795mil|Location1.Y=1705.945mil|Location2.Y=1742.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6295.592mil|Location2.X=6427.795mil|Location1.Y=1705.945mil|Location2.Y=1742.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C01-2(-17.442mm,18.415mm) on Top Layer [Unplated] And Pad U01-5(-14.859mm,18.381mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6252.283mil|Location2.X=6312.717mil|Location1.Y=1588.938mil|Location2.Y=1817.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6252.283mil|Location2.X=6312.717mil|Location1.Y=1588.938mil|Location2.Y=1817.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C02-1(-18.542mm,20.32mm) on Top Layer [Unplated] And Pad R21-2(-17.907mm,15.409mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6252.283mil|Location2.X=6453.386mil|Location1.Y=1782.284mil|Location2.Y=1824.055mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6252.283mil|Location2.X=6453.386mil|Location1.Y=1782.284mil|Location2.Y=1824.055mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C02-1(-18.542mm,20.32mm) on Top Layer [Unplated] And Pad U01-1(-14.209mm,20.481mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6243.938mil|Location2.X=6279.37mil|Location1.Y=1092.284mil|Location2.Y=1197.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6243.938mil|Location2.X=6279.37mil|Location1.Y=1092.284mil|Location2.Y=1197.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C08-1(-18.754mm,2.794mm) on Top Layer [Unplated] And Pad C03-1(-18.754mm,4.572mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6103.938mil|Location2.X=6279.37mil|Location1.Y=1162.284mil|Location2.Y=1337.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6103.938mil|Location2.X=6279.37mil|Location1.Y=1162.284mil|Location2.Y=1337.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C21-1(-22.31mm,8.128mm) on Top Layer [Unplated] And Pad C03-1(-18.754mm,4.572mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6200.63mil|Location2.X=6236.062mil|Location1.Y=1092.284mil|Location2.Y=1197.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6200.63mil|Location2.X=6236.062mil|Location1.Y=1092.284mil|Location2.Y=1197.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C08-2(-19.854mm,2.794mm) on Top Layer [Unplated] And Pad C03-2(-19.854mm,4.572mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6200.63mil|Location2.X=6360.375mil|Location1.Y=1162.284mil|Location2.Y=1377.17mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6200.63mil|Location2.X=6360.375mil|Location1.Y=1162.284mil|Location2.Y=1377.17mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C03-2(-19.854mm,4.572mm) on Top Layer [Unplated] And Pad MCU1-17(-17.192mm,8.634mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6873.938mil|Location2.X=6909.37mil|Location1.Y=1542.284mil|Location2.Y=1647.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6873.938mil|Location2.X=6909.37mil|Location1.Y=1542.284mil|Location2.Y=1647.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C04-1(-2.752mm,14.224mm) on Top Layer [Unplated] And Pad C05-1(-2.752mm,16.002mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6830.63mil|Location2.X=6866.062mil|Location1.Y=1542.284mil|Location2.Y=1647.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6830.63mil|Location2.X=6866.062mil|Location1.Y=1542.284mil|Location2.Y=1647.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C04-2(-3.852mm,14.224mm) on Top Layer [Unplated] And Pad C05-2(-3.852mm,16.002mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6677.766mil|Location2.X=6866.062mil|Location1.Y=1382.766mil|Location2.Y=1577.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6677.766mil|Location2.X=6866.062mil|Location1.Y=1382.766mil|Location2.Y=1577.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad MCU1-1(-7.239mm,10.668mm) on Top Layer [Unplated] And Pad C04-2(-3.852mm,14.224mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6873.938mil|Location2.X=6909.37mil|Location1.Y=1612.284mil|Location2.Y=1722.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6873.938mil|Location2.X=6909.37mil|Location1.Y=1612.284mil|Location2.Y=1722.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C05-1(-2.752mm,16.002mm) on Top Layer [Unplated] And Pad C06-1(-2.752mm,17.907mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6830.63mil|Location2.X=6866.062mil|Location1.Y=1612.284mil|Location2.Y=1722.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6830.63mil|Location2.X=6866.062mil|Location1.Y=1612.284mil|Location2.Y=1722.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C05-2(-3.852mm,16.002mm) on Top Layer [Unplated] And Pad C06-2(-3.852mm,17.907mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6873.938mil|Location2.X=6909.37mil|Location1.Y=1687.284mil|Location2.Y=1787.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6873.938mil|Location2.X=6909.37mil|Location1.Y=1687.284mil|Location2.Y=1787.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C06-1(-2.752mm,17.907mm) on Top Layer [Unplated] And Pad C07-1(-2.752mm,19.558mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6830.63mil|Location2.X=6866.062mil|Location1.Y=1687.284mil|Location2.Y=1787.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6830.63mil|Location2.X=6866.062mil|Location1.Y=1687.284mil|Location2.Y=1787.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C06-2(-3.852mm,17.907mm) on Top Layer [Unplated] And Pad C07-2(-3.852mm,19.558mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6873.938mil|Location2.X=6909.37mil|Location1.Y=1752.284mil|Location2.Y=1852.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6873.938mil|Location2.X=6909.37mil|Location1.Y=1752.284mil|Location2.Y=1852.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C07-1(-2.752mm,19.558mm) on Top Layer [Unplated] And Pad C09-1(-2.752mm,21.209mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6830.63mil|Location2.X=6866.062mil|Location1.Y=1752.284mil|Location2.Y=1852.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6830.63mil|Location2.X=6866.062mil|Location1.Y=1752.284mil|Location2.Y=1852.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C07-2(-3.852mm,19.558mm) on Top Layer [Unplated] And Pad C09-2(-3.852mm,21.209mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6014.96mil|Location2.X=6122.717mil|Location1.Y=1720.63mil|Location2.Y=1762.205mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6014.96mil|Location2.X=6122.717mil|Location1.Y=1720.63mil|Location2.Y=1762.205mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U11-5(-24.57mm,19.035mm) on Top Layer [Unplated] And Pad C11-1(-22.733mm,18.754mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5633.071mil|Location2.X=5851.062mil|Location1.Y=1787.284mil|Location2.Y=1908.78mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5633.071mil|Location2.X=5851.062mil|Location1.Y=1787.284mil|Location2.Y=1908.78mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad IC12-2(-33.97mm,22.733mm) on Top Layer [Unplated] And Pad C12-1(-29.633mm,20.447mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5815.63mil|Location2.X=5894.37mil|Location1.Y=1717.284mil|Location2.Y=1822.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5815.63mil|Location2.X=5894.37mil|Location1.Y=1717.284mil|Location2.Y=1822.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C12-1(-29.633mm,20.447mm) on Top Layer [Unplated] And Pad R14-2(-28.533mm,18.669mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5908.898mil|Location2.X=5971.062mil|Location1.Y=1380.591mil|Location2.Y=1507.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5908.898mil|Location2.X=5971.062mil|Location1.Y=1380.591mil|Location2.Y=1507.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U20-1(-27.314mm,9.992mm) on Bottom Layer [Unplated] And Pad C20-1(-26.585mm,12.446mm) on Bottom Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6103.938mil|Location2.X=6139.37mil|Location1.Y=1302.284mil|Location2.Y=1407.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6103.938mil|Location2.X=6139.37mil|Location1.Y=1302.284mil|Location2.Y=1407.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C21-1(-22.31mm,8.128mm) on Top Layer [Unplated] And Pad C22-1(-22.31mm,9.906mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6060.63mil|Location2.X=6096.065mil|Location1.Y=1302.284mil|Location2.Y=1407.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6060.63mil|Location2.X=6096.065mil|Location1.Y=1302.284mil|Location2.Y=1407.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C21-2(-23.41mm,8.128mm) on Top Layer [Unplated] And Pad C22-2(-23.41mm,9.906mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6060.63mil|Location2.X=6360.375mil|Location1.Y=1302.284mil|Location2.Y=1377.17mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6060.63mil|Location2.X=6360.375mil|Location1.Y=1302.284mil|Location2.Y=1377.17mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C21-2(-23.41mm,8.128mm) on Top Layer [Unplated] And Pad MCU1-17(-17.192mm,8.634mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5989.606mil|Location2.X=6096.062mil|Location1.Y=1302.284mil|Location2.Y=1355mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5989.606mil|Location2.X=6096.062mil|Location1.Y=1302.284mil|Location2.Y=1355mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad U20-6(-25.264mm,8.692mm) on Bottom Layer [Unplated] And Pad C21-2(-23.41mm,8.128mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6103.938mil|Location2.X=6360.375mil|Location1.Y=1372.284mil|Location2.Y=1457.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6103.938mil|Location2.X=6360.375mil|Location1.Y=1372.284mil|Location2.Y=1457.234mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C22-1(-22.31mm,9.906mm) on Top Layer [Unplated] And Pad MCU1-16(-17.192mm,10.668mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5989.606mil|Location2.X=6139.37mil|Location1.Y=1355mil|Location2.Y=1407.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5989.606mil|Location2.X=6139.37mil|Location1.Y=1355mil|Location2.Y=1407.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U20-7(-25.264mm,9.342mm) on Bottom Layer [Unplated] And Pad C22-1(-22.31mm,9.906mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6103.938mil|Location2.X=6171.063mil|Location1.Y=1372.284mil|Location2.Y=1516.575mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6103.938mil|Location2.X=6171.063mil|Location1.Y=1372.284mil|Location2.Y=1516.575mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C22-1(-22.31mm,9.906mm) on Top Layer [Unplated] And Pad U21-8(-21.41mm,12.831mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6060.632mil|Location2.X=6106.89mil|Location1.Y=1372.284mil|Location2.Y=1516.575mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6060.632mil|Location2.X=6106.89mil|Location1.Y=1372.284mil|Location2.Y=1516.575mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C22-2(-23.41mm,9.906mm) on Top Layer [Unplated] And Pad U21-3(-23.04mm,12.831mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6143.11mil|Location2.X=6247.717mil|Location1.Y=1513.425mil|Location2.Y=1624.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6143.11mil|Location2.X=6247.717mil|Location1.Y=1513.425mil|Location2.Y=1624.37mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U21-9(-21.41mm,13.331mm) on Top Layer [Unplated] And Pad C23-2(-19.558mm,15.409mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5762.283mil|Location2.X=5877.717mil|Location1.Y=1428.938mil|Location2.Y=1464.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5762.283mil|Location2.X=5877.717mil|Location1.Y=1428.938mil|Location2.Y=1464.37mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C31-1(-30.988mm,11.345mm) on Top Layer [Unplated] And Pad C32-1(-28.956mm,11.345mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5687.283mil|Location2.X=5797.717mil|Location1.Y=1428.938mil|Location2.Y=1464.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5687.283mil|Location2.X=5797.717mil|Location1.Y=1428.938mil|Location2.Y=1464.37mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad C33-1(-32.893mm,11.345mm) on Top Layer [Unplated] And Pad C31-1(-30.988mm,11.345mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5762.283mil|Location2.X=5877.717mil|Location1.Y=1385.63mil|Location2.Y=1421.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5762.283mil|Location2.X=5877.717mil|Location1.Y=1385.63mil|Location2.Y=1421.062mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C31-2(-30.988mm,10.245mm) on Top Layer [Unplated] And Pad C32-2(-28.956mm,10.245mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5687.283mil|Location2.X=5797.717mil|Location1.Y=1385.63mil|Location2.Y=1421.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5687.283mil|Location2.X=5797.717mil|Location1.Y=1385.63mil|Location2.Y=1421.062mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C33-2(-32.893mm,10.245mm) on Top Layer [Unplated] And Pad C31-2(-30.988mm,10.245mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5803.938mil|Location2.X=5877.717mil|Location1.Y=1428.938mil|Location2.Y=1572.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5803.938mil|Location2.X=5877.717mil|Location1.Y=1428.938mil|Location2.Y=1572.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad R35-1(-29.93mm,14.097mm) on Top Layer [Unplated] And Pad C32-1(-28.956mm,11.345mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5842.283mil|Location2.X=5940.394mil|Location1.Y=1380.591mil|Location2.Y=1421.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5842.283mil|Location2.X=5940.394mil|Location1.Y=1380.591mil|Location2.Y=1421.062mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C32-2(-28.956mm,10.245mm) on Top Layer [Unplated] And Pad U20-1(-27.314mm,9.992mm) on Bottom Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5679.409mil|Location2.X=5730.591mil|Location1.Y=1069.409mil|Location2.Y=1464.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5679.409mil|Location2.X=5730.591mil|Location1.Y=1069.409mil|Location2.Y=1464.37mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad J31-1(-32.893mm,2.413mm) on Multi-Layer And Pad C33-1(-32.893mm,11.345mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5722.717mil|Location1.Y=1421.339mil|Location2.Y=1464.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5722.717mil|Location1.Y=1421.339mil|Location2.Y=1464.37mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad MOD31-22(-35.754mm,11.052mm) on Top Layer [Unplated] And Pad C33-1(-32.893mm,11.345mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5722.717mil|Location1.Y=1370.157mil|Location2.Y=1421.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5722.717mil|Location1.Y=1370.157mil|Location2.Y=1421.062mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-24(-35.754mm,9.752mm) on Top Layer [Unplated] And Pad C33-2(-32.893mm,10.245mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5547.283mil|Location2.X=5692.126mil|Location1.Y=1835.63mil|Location2.Y=1908.78mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5547.283mil|Location2.X=5692.126mil|Location1.Y=1835.63mil|Location2.Y=1908.78mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad R12-2(-36.449mm,21.675mm) on Top Layer [Unplated] And Pad IC12-2(-33.97mm,22.733mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6677.766mil|Location2.X=6866.546mil|Location1.Y=1224.876mil|Location2.Y=1457.234mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6677.766mil|Location2.X=6866.546mil|Location1.Y=1224.876mil|Location2.Y=1457.234mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad MCU1-1(-7.239mm,10.668mm) on Top Layer [Unplated] And Pad J01-1(-4.309mm,6.631mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6688.099mil|Location2.X=6942.717mil|Location1.Y=1048.099mil|Location2.Y=1351.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6688.099mil|Location2.X=6942.717mil|Location1.Y=1048.099mil|Location2.Y=1351.062mil|Absolute=True">Un-Routed Net Constraint: Net NetJ01_10 Between Pad J01-10(-7.003mm,2.141mm) on Multi-Layer And Pad R01-2(-1.905mm,8.467mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6419.532mil|Location2.X=6901.901mil|Location1.Y=1169.074mil|Location2.Y=1261.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6419.532mil|Location2.X=6901.901mil|Location1.Y=1169.074mil|Location2.Y=1261.901mil|Absolute=True">Un-Routed Net Constraint: Net NetJ01_2 Between Pad MCU1-23(-13.798mm,5.24mm) on Top Layer [Unplated] And Pad J01-2(-3.411mm,5.733mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6652.744mil|Location2.X=6831.19mil|Location1.Y=1083.454mil|Location2.Y=1261.901mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6652.744mil|Location2.X=6831.19mil|Location1.Y=1083.454mil|Location2.Y=1261.901mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J01-9(-7.901mm,3.039mm) on Multi-Layer And Pad J01-3(-5.207mm,5.733mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6677.766mil|Location2.X=6831.19mil|Location1.Y=1189.52mil|Location2.Y=1377.17mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6677.766mil|Location2.X=6831.19mil|Location1.Y=1189.52mil|Location2.Y=1377.17mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MCU1-32(-7.239mm,8.634mm) on Top Layer [Unplated] And Pad J01-3(-5.207mm,5.733mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6441.803mil|Location2.X=6866.546mil|Location1.Y=1146.803mil|Location2.Y=1226.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6441.803mil|Location2.X=6866.546mil|Location1.Y=1146.803mil|Location2.Y=1226.546mil|Absolute=True">Un-Routed Net Constraint: Net NetJ01_4 Between Pad MCU1-24(-13.232mm,4.675mm) on Top Layer [Unplated] And Pad J01-4(-4.309mm,4.835mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6723.454mil|Location2.X=6799.37mil|Location1.Y=1154.165mil|Location2.Y=1582.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6723.454mil|Location2.X=6799.37mil|Location1.Y=1154.165mil|Location2.Y=1582.716mil|Absolute=True">Un-Routed Net Constraint: Net NetJ01_5 Between Pad J01-5(-6.105mm,4.835mm) on Multi-Layer And Pad R03-2(-5.546mm,14.351mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6688.099mil|Location2.X=6799.37mil|Location1.Y=1118.81mil|Location2.Y=1652.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6688.099mil|Location2.X=6799.37mil|Location1.Y=1118.81mil|Location2.Y=1652.716mil|Absolute=True">Un-Routed Net Constraint: Net NetJ01_7 Between Pad J01-7(-7.003mm,3.937mm) on Multi-Layer And Pad R02-1(-5.546mm,16.129mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5879.409mil|Location2.X=6042.717mil|Location1.Y=1119.409mil|Location2.Y=1170.591mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5879.409mil|Location2.X=6042.717mil|Location1.Y=1119.409mil|Location2.Y=1170.591mil|Absolute=True">Un-Routed Net Constraint: Net NetJ31_10 Between Pad J31-10(-27.813mm,3.683mm) on Multi-Layer And Pad R34-2(-24.765mm,3.768mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5657.283mil|Location2.X=5730.591mil|Location1.Y=1119.409mil|Location2.Y=1271.062mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5657.283mil|Location2.X=5730.591mil|Location1.Y=1119.409mil|Location2.Y=1271.062mil|Absolute=True">Un-Routed Net Constraint: Net NetJ31_2 Between Pad R31-1(-33.655mm,6.435mm) on Top Layer [Unplated] And Pad J31-2(-32.893mm,3.683mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5729.409mil|Location2.X=5830.591mil|Location1.Y=1069.409mil|Location2.Y=1120.591mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5729.409mil|Location2.X=5830.591mil|Location1.Y=1069.409mil|Location2.Y=1120.591mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J31-3(-31.623mm,2.413mm) on Multi-Layer And Pad J31-5(-30.353mm,2.413mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5729.409mil|Location2.X=5804.371mil|Location1.Y=1119.409mil|Location2.Y=1267.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5729.409mil|Location2.X=5804.371mil|Location1.Y=1119.409mil|Location2.Y=1267.716mil|Absolute=True">Un-Routed Net Constraint: Net NetJ31_4 Between Pad J31-4(-31.623mm,3.683mm) on Multi-Layer And Pad R33-2(-30.819mm,6.35mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5779.409mil|Location2.X=5930.591mil|Location1.Y=1069.409mil|Location2.Y=1120.591mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5779.409mil|Location2.X=5930.591mil|Location1.Y=1069.409mil|Location2.Y=1120.591mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J31-5(-30.353mm,2.413mm) on Multi-Layer And Pad J31-9(-27.813mm,2.413mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5768.938mil|Location2.X=5830.591mil|Location1.Y=1119.409mil|Location2.Y=1342.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5768.938mil|Location2.X=5830.591mil|Location1.Y=1119.409mil|Location2.Y=1342.716mil|Absolute=True">Un-Routed Net Constraint: Net NetJ31_6 Between Pad R32-1(-30.819mm,8.255mm) on Top Layer [Unplated] And Pad J31-6(-30.353mm,3.683mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5879.409mil|Location2.X=5940.394mil|Location1.Y=1069.409mil|Location2.Y=1406.181mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5879.409mil|Location2.X=5940.394mil|Location1.Y=1069.409mil|Location2.Y=1406.181mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J31-9(-27.813mm,2.413mm) on Multi-Layer And Pad U20-1(-27.314mm,9.992mm) on Bottom Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6588.681mil|Location2.X=6752.234mil|Location1.Y=1382.766mil|Location2.Y=1546.319mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6588.681mil|Location2.X=6752.234mil|Location1.Y=1382.766mil|Location2.Y=1546.319mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad MCU1-5(-9.502mm,12.931mm) on Top Layer [Unplated] And Pad MCU1-1(-7.239mm,10.668mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6078.937mil|Location2.X=6471.73mil|Location1.Y=1494.121mil|Location2.Y=1568.59mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6078.937mil|Location2.X=6471.73mil|Location1.Y=1494.121mil|Location2.Y=1568.59mil|Absolute=True">Un-Routed Net Constraint: Net SPI1_MOSI Between Pad U21-2(-23.04mm,13.331mm) on Top Layer [Unplated] And Pad MCU1-11(-14.364mm,13.496mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6029.11mil|Location2.X=6449.459mil|Location1.Y=1471.85mil|Location2.Y=1560.89mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6029.11mil|Location2.X=6449.459mil|Location1.Y=1471.85mil|Location2.Y=1560.89mil|Absolute=True">Un-Routed Net Constraint: Net SPI1_MISO Between Via (-24.384mm,13.97mm) from Top Layer to Bottom Layer And Pad MCU1-12(-14.929mm,12.931mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6013.583mil|Location2.X=6489.953mil|Location1.Y=1448.661mil|Location2.Y=1586.813mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6013.583mil|Location2.X=6489.953mil|Location1.Y=1448.661mil|Location2.Y=1586.813mil|Absolute=True">Un-Routed Net Constraint: Net SPI1_SCK Between Track (-22.515mm,13.936mm)(-22.515mm,14.075mm) on Top Layer And Pad MCU1-13(-15.495mm,12.365mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5637.402mil|Location2.X=6445.411mil|Location1.Y=1694.054mil|Location2.Y=1542.271mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5637.402mil|Location2.X=6445.411mil|Location1.Y=1694.054mil|Location2.Y=1542.271mil|Absolute=True">Un-Routed Net Constraint: Net NetIC12_4 Between Track (-32.07mm,20.169mm)(-32.07mm,22.083mm) on Top Layer And Pad MCU1-15(-16.627mm,11.234mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6277.283mil|Location2.X=6360.375mil|Location1.Y=1302.701mil|Location2.Y=1624.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6277.283mil|Location2.X=6360.375mil|Location1.Y=1302.701mil|Location2.Y=1624.37mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad R21-2(-17.907mm,15.409mm) on Top Layer [Unplated] And Pad MCU1-17(-17.192mm,8.634mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5552.991mil|Location2.X=6404.917mil|Location1.Y=1258.159mil|Location2.Y=1576.85mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5552.991mil|Location2.X=6404.917mil|Location1.Y=1258.159mil|Location2.Y=1576.85mil|Absolute=True">Un-Routed Net Constraint: Net NetMCU1_19 Between Pad MOD31-42(-36.404mm,14.302mm) on Top Layer [Unplated] And Pad MCU1-19(-16.061mm,7.503mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5517.142mil|Location2.X=6449.459mil|Location1.Y=1213.617mil|Location2.Y=1522.189mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5517.142mil|Location2.X=6449.459mil|Location1.Y=1213.617mil|Location2.Y=1522.189mil|Absolute=True">Un-Routed Net Constraint: Net NetMCU1_21 Between Via (-37.338mm,12.937mm) from Top Layer to Bottom Layer And Pad MCU1-21(-14.929mm,6.372mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6007.283mil|Location2.X=6596.337mil|Location1.Y=1146.803mil|Location2.Y=1221.272mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6007.283mil|Location2.X=6596.337mil|Location1.Y=1146.803mil|Location2.Y=1221.272mil|Absolute=True">Un-Routed Net Constraint: Net NetMCU1_25 Between Pad R34-1(-24.765mm,4.868mm) on Top Layer [Unplated] And Pad MCU1-25(-11.199mm,4.675mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=6618.608mil|Location1.Y=1169.074mil|Location2.Y=1576.85mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=6618.608mil|Location1.Y=1169.074mil|Location2.Y=1576.85mil|Absolute=True">Un-Routed Net Constraint: Net NetMCU1_26 Between Pad MOD31-8(-40.304mm,14.302mm) on Top Layer [Unplated] And Pad MCU1-26(-10.633mm,5.24mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6610.952mil|Location2.X=6942.717mil|Location1.Y=1358.938mil|Location2.Y=1524.048mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6610.952mil|Location2.X=6942.717mil|Location1.Y=1358.938mil|Location2.Y=1524.048mil|Absolute=True">Un-Routed Net Constraint: Net RESET Between Pad MCU1-4(-8.936mm,12.365mm) on Top Layer [Unplated] And Pad R01-1(-1.905mm,9.567mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6277.283mil|Location2.X=6663.15mil|Location1.Y=1471.85mil|Location2.Y=1624.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6277.283mil|Location2.X=6663.15mil|Location1.Y=1471.85mil|Location2.Y=1624.37mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad R21-2(-17.907mm,15.409mm) on Top Layer [Unplated] And Pad MCU1-5(-9.502mm,12.931mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6014.96mil|Location2.X=6618.608mil|Location1.Y=1516.392mil|Location2.Y=1736.615mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6014.96mil|Location2.X=6618.608mil|Location1.Y=1516.392mil|Location2.Y=1736.615mil|Absolute=True">Un-Routed Net Constraint: Net NetMCU1_7 Between Pad U11-4(-24.57mm,18.385mm) on Top Layer [Unplated] And Pad MCU1-7(-10.633mm,14.062mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6521.868mil|Location2.X=6756.062mil|Location1.Y=1538.663mil|Location2.Y=1613.132mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6521.868mil|Location2.X=6756.062mil|Location1.Y=1538.663mil|Location2.Y=1613.132mil|Absolute=True">Un-Routed Net Constraint: Net LPUART1_TX Between Pad MCU1-8(-11.199mm,14.628mm) on Top Layer [Unplated] And Pad R03-1(-6.646mm,14.351mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6441.803mil|Location2.X=6756.062mil|Location1.Y=1538.663mil|Location2.Y=1652.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6441.803mil|Location2.X=6756.062mil|Location1.Y=1538.663mil|Location2.Y=1652.716mil|Absolute=True">Un-Routed Net Constraint: Net LPUART1_RX Between Pad MCU1-9(-13.232mm,14.628mm) on Top Layer [Unplated] And Pad R02-2(-6.646mm,16.129mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5427.007mil|Location1.Y=1370.157mil|Location2.Y=1448.898mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5427.007mil|Location1.Y=1370.157mil|Location2.Y=1448.898mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-1(-40.304mm,9.752mm) on Top Layer [Unplated] And Pad MOD31-3(-40.304mm,11.052mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5366.771mil|Location2.X=5427.007mil|Location1.Y=1366.22mil|Location2.Y=1397.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5366.771mil|Location2.X=5427.007mil|Location1.Y=1366.22mil|Location2.Y=1397.716mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-G5(-41.134mm,9.652mm) on Top Layer [Unplated] And Pad MOD31-1(-40.304mm,9.752mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5478.188mil|Location1.Y=1574.882mil|Location2.Y=1602.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5478.188mil|Location1.Y=1574.882mil|Location2.Y=1602.441mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-9(-40.304mm,14.952mm) on Top Layer [Unplated] And Pad MOD31-11(-39.004mm,14.952mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5606.141mil|Location1.Y=1523.701mil|Location2.Y=1602.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5606.141mil|Location1.Y=1523.701mil|Location2.Y=1602.441mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-18(-35.754mm,13.652mm) on Top Layer [Unplated] And Pad MOD31-16(-35.754mm,14.952mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5606.141mil|Location1.Y=1472.52mil|Location2.Y=1551.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5606.141mil|Location1.Y=1472.52mil|Location2.Y=1551.26mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-20(-35.754mm,12.352mm) on Top Layer [Unplated] And Pad MOD31-18(-35.754mm,13.652mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5606.141mil|Location1.Y=1370.157mil|Location2.Y=1500.079mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5606.141mil|Location1.Y=1370.157mil|Location2.Y=1500.079mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-24(-35.754mm,9.752mm) on Top Layer [Unplated] And Pad MOD31-20(-35.754mm,12.352mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5606.141mil|Location1.Y=1421.339mil|Location2.Y=1474.488mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5578.582mil|Location2.X=5606.141mil|Location1.Y=1421.339mil|Location2.Y=1474.488mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad MOD31-22(-35.754mm,11.052mm) on Top Layer [Unplated] And Pad MOD31-21(-35.754mm,11.702mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5425.038mil|Location2.X=5606.141mil|Location1.Y=1370.157mil|Location2.Y=1448.898mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5425.038mil|Location2.X=5606.141mil|Location1.Y=1370.157mil|Location2.Y=1448.898mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad MOD31-30(-39.654mm,9.752mm) on Top Layer [Unplated] And Pad MOD31-22(-35.754mm,11.052mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5552.991mil|Location2.X=5606.141mil|Location1.Y=1370.157mil|Location2.Y=1423.307mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5552.991mil|Location2.X=5606.141mil|Location1.Y=1370.157mil|Location2.Y=1423.307mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-48(-36.404mm,10.402mm) on Top Layer [Unplated] And Pad MOD31-24(-35.754mm,9.752mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5427.007mil|Location1.Y=1421.339mil|Location2.Y=1500.079mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5427.007mil|Location1.Y=1421.339mil|Location2.Y=1500.079mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-3(-40.304mm,11.052mm) on Top Layer [Unplated] And Pad MOD31-5(-40.304mm,12.352mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5530.55mil|Location1.Y=1421.339mil|Location2.Y=1462.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5530.55mil|Location1.Y=1421.339mil|Location2.Y=1462.677mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-3(-40.304mm,11.052mm) on Top Layer [Unplated] And Pad MOD31-G1(-37.724mm,11.352mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5499.054mil|Location2.X=5580.55mil|Location1.Y=1395.748mil|Location2.Y=1462.677mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5499.054mil|Location2.X=5580.55mil|Location1.Y=1395.748mil|Location2.Y=1462.677mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-G1(-37.724mm,11.352mm) on Top Layer [Unplated] And Pad MOD31-48(-36.404mm,10.402mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5427.007mil|Location1.Y=1472.52mil|Location2.Y=1551.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5427.007mil|Location1.Y=1472.52mil|Location2.Y=1551.26mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-5(-40.304mm,12.352mm) on Top Layer [Unplated] And Pad MOD31-7(-40.304mm,13.652mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=6042.717mil|Location1.Y=1173.938mil|Location2.Y=1525.669mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=6042.717mil|Location1.Y=1173.938mil|Location2.Y=1525.669mil|Absolute=True">Un-Routed Net Constraint: Net NetMCU1_25 Between Pad MOD31-6(-40.304mm,13.002mm) on Top Layer [Unplated] And Pad R34-1(-24.765mm,4.868mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5427.007mil|Location1.Y=1523.701mil|Location2.Y=1602.441mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5399.448mil|Location2.X=5427.007mil|Location1.Y=1523.701mil|Location2.Y=1602.441mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-7(-40.304mm,13.652mm) on Top Layer [Unplated] And Pad MOD31-9(-40.304mm,14.952mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5366.771mil|Location2.X=5427.007mil|Location1.Y=1574.882mil|Location2.Y=1606.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5366.771mil|Location2.X=5427.007mil|Location1.Y=1574.882mil|Location2.Y=1606.378mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-G4(-41.134mm,15.052mm) on Top Layer [Unplated] And Pad MOD31-9(-40.304mm,14.952mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5276.22mil|Location2.X=5349.054mil|Location1.Y=1578.819mil|Location2.Y=1606.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5276.22mil|Location2.X=5349.054mil|Location1.Y=1578.819mil|Location2.Y=1606.378mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-G2(-43.434mm,15.052mm) on Top Layer [Unplated] And Pad MOD31-G3(-42.284mm,15.052mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5321.495mil|Location2.X=5394.33mil|Location1.Y=1578.819mil|Location2.Y=1606.378mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5321.495mil|Location2.X=5394.33mil|Location1.Y=1578.819mil|Location2.Y=1606.378mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-G3(-42.284mm,15.052mm) on Top Layer [Unplated] And Pad MOD31-G4(-41.134mm,15.052mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5321.495mil|Location2.X=5394.33mil|Location1.Y=1366.22mil|Location2.Y=1393.779mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5321.495mil|Location2.X=5394.33mil|Location1.Y=1366.22mil|Location2.Y=1393.779mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-G6(-42.284mm,9.652mm) on Top Layer [Unplated] And Pad MOD31-G5(-41.134mm,9.652mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5276.22mil|Location2.X=5349.054mil|Location1.Y=1366.22mil|Location2.Y=1393.779mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5276.22mil|Location2.X=5349.054mil|Location1.Y=1366.22mil|Location2.Y=1393.779mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad MOD31-G7(-43.434mm,9.652mm) on Top Layer [Unplated] And Pad MOD31-G6(-42.284mm,9.652mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5803.938mil|Location2.X=5971.062mil|Location1.Y=1537.284mil|Location2.Y=1572.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5803.938mil|Location2.X=5971.062mil|Location1.Y=1537.284mil|Location2.Y=1572.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad R35-1(-29.93mm,14.097mm) on Top Layer [Unplated] And Pad R20-2(-26.585mm,14.097mm) on Bottom Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5935.63mil|Location2.X=6106.89mil|Location1.Y=1493.74mil|Location2.Y=1572.716mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5935.63mil|Location2.X=6106.89mil|Location1.Y=1493.74mil|Location2.Y=1572.716mil|Absolute=True">Un-Routed Net Constraint: Net Vcc Between Pad R20-2(-26.585mm,14.097mm) on Bottom Layer [Unplated] And Pad U21-3(-23.04mm,12.831mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5499.11mil|Location2.X=5692.717mil|Location1.Y=1278.938mil|Location2.Y=1490.89mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5499.11mil|Location2.X=5692.717mil|Location1.Y=1278.938mil|Location2.Y=1490.89mil|Absolute=True">Un-Routed Net Constraint: Net NetMOD31_52 Between Via (-37.846mm,12.192mm) from Top Layer to Bottom Layer And Pad R31-2(-33.655mm,7.535mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.507mil|Location2.X=5843.346mil|Location1.Y=1310.02mil|Location2.Y=1425mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5389.507mil|Location2.X=5843.346mil|Location1.Y=1310.02mil|Location2.Y=1425mil|Absolute=True">Un-Routed Net Constraint: Net NetMOD31_51 Between Track (-38.367mm,10.414mm)(-38.367mm,11.229mm) on Top Layer And Pad R32-2(-31.919mm,8.255mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5453.387mil|Location2.X=5761.063mil|Location1.Y=1232.284mil|Location2.Y=1481.613mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5453.387mil|Location2.X=5761.063mil|Location1.Y=1232.284mil|Location2.Y=1481.613mil|Absolute=True">Un-Routed Net Constraint: Net NetMOD31_31 Between Via (-39.007mm,11.956mm) from Top Layer to Bottom Layer And Pad R33-1(-31.919mm,6.35mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6375.63mil|Location2.X=6454.37mil|Location1.Y=1705.945mil|Location2.Y=1792.559mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6375.63mil|Location2.X=6454.37mil|Location1.Y=1705.945mil|Location2.Y=1792.559mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U01-5(-14.859mm,18.381mm) on Top Layer [Unplated] And Pad U01-7(-14.859mm,19.431mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5963.779mil|Location2.X=6050.393mil|Location1.Y=1710.04mil|Location2.Y=1788.78mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5963.779mil|Location2.X=6050.393mil|Location1.Y=1710.04mil|Location2.Y=1788.78mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U11-7(-25.62mm,19.035mm) on Top Layer [Unplated] And Pad U11-5(-24.57mm,19.035mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850mil|Location2.X=6091.338mil|Location1.Y=1623.82mil|Location2.Y=1849.41mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5850mil|Location2.X=6091.338mil|Location1.Y=1623.82mil|Location2.Y=1849.41mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (-26.695mm,18.41mm)(-26.67mm,18.385mm) on Top Layer And Pad U11-7(-25.62mm,19.035mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5908.898mil|Location2.X=6021.102mil|Location1.Y=1355mil|Location2.Y=1406.181mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5908.898mil|Location2.X=6021.102mil|Location1.Y=1355mil|Location2.Y=1406.181mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad U20-1(-27.314mm,9.992mm) on Bottom Layer [Unplated] And Pad U20-7(-25.264mm,9.342mm) on Bottom Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5959.11mil|Location2.X=6106.89mil|Location1.Y=1434.11mil|Location2.Y=1536.26mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5959.11mil|Location2.X=6106.89mil|Location1.Y=1434.11mil|Location2.Y=1536.26mil|Absolute=True">Un-Routed Net Constraint: Net SPI1_MOSI Between Via (-26.162mm,11.303mm) from Top Layer to Bottom Layer And Pad U21-2(-23.04mm,13.331mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDHA1SD1FNUD2WDCGJTVE5NBBOECSCXHAIW2KMUVP20UQJJPW21L1"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Width Constraint (Min=0.15mm) (Max=3mm) (Preferred=0.2mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5456.508mil|Location2.X=5468.178mil|Location1.Y=1461.892mil|Location2.Y=1472.175mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5456.508mil|Location2.X=5468.178mil|Location1.Y=1461.892mil|Location2.Y=1472.175mil|Absolute=True">Width Constraint: Track (-39.055mm,11.732mm)(-39.055mm,11.909mm) on Top Layer Actual Width = 0.1mm, Target Width = 0.15mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5459.866mil|Location2.X=5473.261mil|Location1.Y=1466.313mil|Location2.Y=1474.923mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5459.866mil|Location2.X=5473.261mil|Location1.Y=1466.313mil|Location2.Y=1474.923mil|Absolute=True">Width Constraint: Track (-39.055mm,11.909mm)(-39.007mm,11.956mm) on Top Layer Actual Width = 0.1mm, Target Width = 0.15mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5450.65mil|Location2.X=5462.32mil|Location1.Y=1438.165mil|Location2.Y=1448.448mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5450.65mil|Location2.X=5462.32mil|Location1.Y=1438.165mil|Location2.Y=1448.448mil|Absolute=True">Width Constraint: Track (-39.204mm,10.852mm)(-39.204mm,11.583mm) on Top Layer Actual Width = 0.1mm, Target Width = 0.15mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5455.995mil|Location2.X=5469.39mil|Location1.Y=1455.483mil|Location2.Y=1464.092mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5455.995mil|Location2.X=5469.39mil|Location1.Y=1455.483mil|Location2.Y=1464.092mil|Absolute=True">Width Constraint: Track (-39.204mm,11.583mm)(-39.055mm,11.732mm) on Top Layer Actual Width = 0.1mm, Target Width = 0.15mm</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5444.208mil|Location2.X=5457.602mil|Location1.Y=1414.918mil|Location2.Y=1423.527mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5444.208mil|Location2.X=5457.602mil|Location1.Y=1414.918mil|Location2.Y=1423.527mil|Absolute=True">Width Constraint: Track (-39.654mm,10.402mm)(-39.204mm,10.852mm) on Top Layer Actual Width = 0.1mm, Target Width = 0.15mm</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDIML34N4WBKJFLDWS42ZMD5QNELI2NXDFZOCQEVPUDGGRIY20OQSD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5955.61mil|Location2.X=5992.02mil|Location1.Y=1430.61mil|Location2.Y=1485.976mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5955.61mil|Location2.X=5992.02mil|Location1.Y=1430.61mil|Location2.Y=1485.976mil|Absolute=True">Net Antennae: Via (-26.162mm,11.303mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJM1LMH3MTIXCDKWIF1N14UK3VMXHJ4UNA0DWALGF2MH1MWEMVQCB"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Board Clearance Constraint (Gap=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6506.875mil|Location2.X=6513.125mil|Location1.Y=1982.082mil|Location2.Y=1988.331mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6506.875mil|Location2.X=6513.125mil|Location1.Y=1982.082mil|Location2.Y=1988.331mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (-12.446mm,24.892mm)(-11.43mm,23.876mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6181.875mil|Location2.X=6188.125mil|Location1.Y=1982.082mil|Location2.Y=1988.331mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6181.875mil|Location2.X=6188.125mil|Location1.Y=1982.082mil|Location2.Y=1988.331mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (-20.701mm,18.542mm)(-20.701mm,24.892mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6344.375mil|Location2.X=6350.625mil|Location1.Y=1982.082mil|Location2.Y=1988.331mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6344.375mil|Location2.X=6350.625mil|Location1.Y=1982.082mil|Location2.Y=1988.331mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (-20.701mm,24.892mm)(-12.446mm,24.892mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6107.996mil|Location2.X=6114.245mil|Location1.Y=1984.582mil|Location2.Y=1990.831mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=6107.996mil|Location2.X=6114.245mil|Location1.Y=1984.582mil|Location2.Y=1990.831mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (-22.606mm,25.019mm)(-20.701mm,23.114mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5501.875mil|Location2.X=5508.125mil|Location1.Y=1984.582mil|Location2.Y=1990.831mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5501.875mil|Location2.X=5508.125mil|Location1.Y=1984.582mil|Location2.Y=1990.831mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (-37.973mm,20.955mm)(-37.973mm,25.019mm) on Top Overlay </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5804.375mil|Location2.X=5810.625mil|Location1.Y=1984.582mil|Location2.Y=1990.831mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\natha\OneDrive\Pulpit\AltiumDesigner.Workspace\SweetDreamsPCB\Projekt_PBL4\PCB.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=5804.375mil|Location2.X=5810.625mil|Location1.Y=1984.582mil|Location2.Y=1990.831mil|Absolute=True">Board Outline Clearance(Outline Edge): (Collision &lt; 0.2mm) Between Board Edge And Track (-37.973mm,25.019mm)(-22.606mm,25.019mm) on Top Overlay </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
