@@ -2,18 +2,14 @@
 FileName = PCB.GBR
 AutoAperture = True
 *************************************************************
-Generating : Bottom Paste
-      File : PCB.GBP
+Generating : Bottom Overlay
+      File : PCB.GBO
 
-    Adding Layer      : Bottom Paste
-
-    Adding Layer      : Bottom Layer
-
-    Adding Layer      : Multi-Layer
+    Adding Layer      : Bottom Overlay
 
 
 Used DCodes :
-    D68
+    D15
 *************************************************************
 
 *************************************************************
@@ -46,25 +42,39 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
-Generating : Bottom Solder
-      File : PCB.GBS
+Generating : Top Overlay
+      File : PCB.GTO
 
-    Adding Layer      : Bottom Solder
+    Adding Layer      : Top Overlay
 
-    Adding Layer      : Bottom Layer
+
+Used DCodes :
+    D10
+    D11
+    D12
+    D13
+    D14
+    D15
+    D16
+*************************************************************
+
+*************************************************************
+Generating : Power Plane
+      File : PCB.G2
+
+    Adding Layer      : Power Plane
 
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D47
-    D48
-    D49
-    D50
-    D51
-    D52
-    D53
-    D69
+    D61
+    D62
+    D63
+    D64
+    D65
+    D66
+    D67
 *************************************************************
 
 *************************************************************
@@ -104,31 +114,22 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
-Generating : Bottom Overlay
-      File : PCB.GBO
+Generating : GND Plane
+      File : PCB.G1
 
-    Adding Layer      : Bottom Overlay
+    Adding Layer      : GND Plane
 
-
-Used DCodes :
-    D15
-*************************************************************
-
-*************************************************************
-Generating : Top Overlay
-      File : PCB.GTO
-
-    Adding Layer      : Top Overlay
+    Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D10
-    D11
-    D12
-    D13
-    D14
-    D15
-    D16
+    D61
+    D62
+    D63
+    D64
+    D65
+    D66
+    D67
 *************************************************************
 
 *************************************************************
@@ -154,41 +155,18 @@ Used DCodes :
 *************************************************************
 
 *************************************************************
-Generating : Power Plane
-      File : PCB.G2
+Generating : Bottom Paste
+      File : PCB.GBP
 
-    Adding Layer      : Power Plane
+    Adding Layer      : Bottom Paste
 
-    Adding Layer      : Multi-Layer
-
-
-Used DCodes :
-    D61
-    D62
-    D63
-    D64
-    D65
-    D66
-    D67
-*************************************************************
-
-*************************************************************
-Generating : GND Plane
-      File : PCB.G1
-
-    Adding Layer      : GND Plane
+    Adding Layer      : Bottom Layer
 
     Adding Layer      : Multi-Layer
 
 
 Used DCodes :
-    D61
-    D62
-    D63
-    D64
-    D65
-    D66
-    D67
+    D68
 *************************************************************
 
 *************************************************************
@@ -229,6 +207,28 @@ Used DCodes :
     D65
     D66
     D67
+*************************************************************
+
+*************************************************************
+Generating : Bottom Solder
+      File : PCB.GBS
+
+    Adding Layer      : Bottom Solder
+
+    Adding Layer      : Bottom Layer
+
+    Adding Layer      : Multi-Layer
+
+
+Used DCodes :
+    D47
+    D48
+    D49
+    D50
+    D51
+    D52
+    D53
+    D69
 *************************************************************
 
 *************************************************************
