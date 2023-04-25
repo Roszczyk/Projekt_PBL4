@@ -1,7 +1,7 @@
 Protel Design System Design Rule Check
 PCB File : C:\Projekt PBL\Projekt_PBL4\PCB.PcbDoc
-Date     : 21.04.2023
-Time     : 22:03:01
+Date     : 25.04.2023
+Time     : 20:09:14
 
 Processing Rule : Clearance Constraint (Gap=0.102mm) (All),(All)
 Rule Violations :0
@@ -18,16 +18,16 @@ Rule Violations :0
 Processing Rule : Modified Polygon (Allow modified: No), (Allow shelved: No)
 Rule Violations :0
 
-Processing Rule : Width Constraint (Min=0.102mm) (Max=1816.048mm) (Preferred=0.2mm) (All)
+Processing Rule : Width Constraint (Min=0.15mm) (Max=3mm) (Preferred=0.2mm) (All)
 Rule Violations :0
 
 Processing Rule : Width Constraint (Min=0.102mm) (Max=1816.048mm) (Preferred=0.102mm) (All)
 Rule Violations :0
 
-Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.5mm) (Conductor Width=0.4mm) (Air Gap=0.2mm) (Entries=4) (InPadClass('PowerPads'))
+Processing Rule : Power Plane Connect Rule(Direct Connect )(Expansion=0.5mm) (Conductor Width=0.4mm) (Air Gap=0.2mm) (Entries=4) (InPadClass('PowerPads'))
 Rule Violations :0
 
-Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=0.3mm) (Conductor Width=0.2mm) (Air Gap=0.15mm) (Entries=4) (All)
+Processing Rule : Power Plane Connect Rule(Direct Connect )(Expansion=0.3mm) (Conductor Width=0.2mm) (Air Gap=0.15mm) (Entries=4) (All)
 Rule Violations :0
 
 Processing Rule : Minimum Annular Ring (Minimum=0.076mm) (All)
@@ -72,4 +72,4 @@ Rule Violations :0
 
 Violations Detected : 0
 Waived Violations : 0
-Time Elapsed        : 00:00:02
+Time Elapsed        : 00:00:01
