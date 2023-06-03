@@ -1,4 +1,4 @@
-15:59:11 **** Incremental Build of configuration Debug for project proba ****
+11:31:27 **** Incremental Build of configuration Debug for project proba ****
 make -j12 all 
 arm-none-eabi-size   proba.elf 
    text	   data	    bss	    dec	    hex	filename
@@ -6,5 +6,5 @@ arm-none-eabi-size   proba.elf
 Finished building: default.size.stdout
  
 
-15:59:11 Build Finished. 0 errors, 0 warnings. (took 334ms)
+11:31:28 Build Finished. 0 errors, 0 warnings. (took 505ms)
 
