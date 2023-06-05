@@ -60,8 +60,8 @@ all: main-build
 main-build: BMA456.elf secondary-outputs
 
 # Tool invocations
-BMA456.elf BMA456.map: $(OBJS) $(USER_OBJS) C:\Users\natha\OneDrive\Pulpit\STM32CubeIDE.WorkSpace\BMA456\STM32L073RZTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "BMA456.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\natha\OneDrive\Pulpit\STM32CubeIDE.WorkSpace\BMA456\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMA456.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+BMA456.elf BMA456.map: $(OBJS) $(USER_OBJS) C:\Users\mikol\OneDrive\Pulpit\repos\Projekt_PBL4\software\BMA456\STM32L073RZTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "BMA456.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m0plus -T"C:\Users\mikol\OneDrive\Pulpit\repos\Projekt_PBL4\software\BMA456\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMA456.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

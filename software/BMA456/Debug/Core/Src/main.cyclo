@@ -8,5 +8,5 @@ main.c:394:6:BMA456_SPI_Read	1
 main.c:406:6:BMA456_SPI_Write	1
 main.c:427:9:BMA456_Check_Connection	2
 main.c:452:6:BMA456_Init	1
-main.c:557:6:BMA456_Get_Sensor_Data	1
-main.c:579:6:Error_Handler	1
+main.c:560:6:BMA456_Get_Sensor_Data	1
+main.c:582:6:Error_Handler	1

@@ -190,7 +190,7 @@ int main(void)
 	  BMA456_Init();
 	  while(1){
 	  BMA456_Get_Sensor_Data(data_read);
-	  uint16_t data_read_readable[3];
+	  int16_t data_read_readable[3];
 	  data_read_readable[0] = data_read[1]*256 + data_read[0];
 	  data_read_readable[1] = data_read[3]*256 + data_read[2];
 	  data_read_readable[2] = data_read[5]*256 + data_read[4];
@@ -203,7 +203,7 @@ int main(void)
 	  printf("Output data readable:\r\n");
 	  for(int i = 0; i<3; i++)
 	  {
-	   	printf("%u \r\n", data_read_readable[i]);
+	   	printf("%d \r\n", data_read_readable[i]);
 	  }
 	  }
 
@@ -467,6 +467,9 @@ void BMA456_Init()
 	HAL_Delay(10);
 
 	BMA456_SPI_Write(BMA456_INIT_CTRL, 0x00);
+	HAL_Delay(10);
+
+	BMA456_SPI_Write(0x41, 0x03);
 	HAL_Delay(10);
 
 	BMA456_SPI_Write(BMA456_INIT_CTRL, 0x01);

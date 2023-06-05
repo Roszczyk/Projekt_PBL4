@@ -8,5 +8,5 @@
 ../Core/Src/main.c:406:6:BMA456_SPI_Write	32	static
 ../Core/Src/main.c:427:9:BMA456_Check_Connection	24	static
 ../Core/Src/main.c:452:6:BMA456_Init	8	static
-../Core/Src/main.c:557:6:BMA456_Get_Sensor_Data	40	static
-../Core/Src/main.c:579:6:Error_Handler	8	static,ignoring_inline_asm
+../Core/Src/main.c:560:6:BMA456_Get_Sensor_Data	40	static
+../Core/Src/main.c:582:6:Error_Handler	8	static,ignoring_inline_asm
