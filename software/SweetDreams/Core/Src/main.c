@@ -53,7 +53,7 @@ SPI_HandleTypeDef hspi1;
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
-char ATcommand[64];
+//char ATcommand[64];
 uint16_t ble_msg_len;
 uint16_t i = 0;
 //char buffer[BUFFER_SIZE];
@@ -80,23 +80,23 @@ static void MX_RTC_Init(void);
 struct bme280_dev dev;
 struct bme280_data comp_data;
 
-void SendMSG(char* cmd){
-	  ble_msg_len= strlen(cmd);
-
-	  strcpy(ATcommand,cmd);
-	  ATcommand[ble_msg_len++]='\r';
+//void SendMSG(char* cmd){
+//	  ble_msg_len= strlen(cmd);
 //
-
-//      received_byte[9] = '\0'; // Null-terminate the buffer
-//	  memset( received_byte, 0, 10);
-	  HAL_UART_Transmit(&huart1,(uint8_t *)ATcommand,ble_msg_len,HAL_MAX_DELAY);
-	  HAL_Delay(1000);
-	  for(uint8_t u; u<64; u++){
-		  ATcommand[u]=0;
-	  }
-
-
-}
+//	  strcpy(ATcommand,cmd);
+//	  ATcommand[ble_msg_len++]='\r';
+////
+//
+////      received_byte[9] = '\0'; // Null-terminate the buffer
+////	  memset( received_byte, 0, 10);
+//	  HAL_UART_Transmit(&huart1,(uint8_t *)ATcommand,ble_msg_len,HAL_MAX_DELAY);
+//	  HAL_Delay(1000);
+//	  for(uint8_t u; u<64; u++){
+//		  ATcommand[u]=0;
+//	  }
+//
+//
+//}
 uint8_t BMA456_Check_Connection()
 {
 	uint8_t reg_addr = 0x00;
@@ -184,7 +184,7 @@ int main(void)
   HAL_Delay(800);
   HAL_ADC_Start_DMA(&hadc, adc_buffer,64);
   //HAL_UART_Receive_IT(&huart1,  received_byte,2);
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
+
   //HAL_UART_IRQHandler(&huart1);
   HAL_Delay(800);
  // printf("Test UART\r\n");
@@ -194,11 +194,14 @@ int main(void)
   {
 	  while(1);
   }
+  HAL_Delay(100);
   uint8_t rslt_bma = BMA456_Check_Connection();
   if(rslt_bma != 1)
   {
 	  while(1);
   }
+  HAL_Delay(100);
+  stream_sensor_data_normal_mode(&dev);
   //uint8_t rslt_bme = BME280_Check_Connection(&hspi1);
 
 //  // HAL_Delay(1000);
@@ -284,28 +287,48 @@ int main(void)
 //  uint8_t Sum[2];
 //  Sum[0] = rslt_a;
 //  Sum[1] = rslt_e;
-  char Sum_s[2][4];
-
+ // char Sum_s[2][4];
+char Temp[10];
+char Hum[10];
   rslt_bma=100;
   rslt_bme=150;
 
-  itoa(rslt_bma, Sum_s[0], 10);
-  itoa(rslt_bme, Sum_s[1], 10);
-
-  for(int i=strlen(Sum_s[0]); i<=3; i++){
-	  Sum_s[0][i]=' ';
-  }
-
-  for(int i=strlen(Sum_s[1]); i<=3; i++){
-	  Sum_s[1][i]=' ';
-  }
+//  itoa(rslt_bma, Sum_s[0], 10);
+//  itoa(rslt_bme, Sum_s[1], 10);
+//
+//  for(int i=strlen(Sum_s[0]); i<=3; i++){
+//	  Sum_s[0][i]=' ';
+//  }
+//
+//  for(int i=strlen(Sum_s[1]); i<=3; i++){
+//	  Sum_s[1][i]=' ';
+//  }
 
 
   while (1)
   {
+	  //double temp = comp_data->temperature;
+	  //double hum = comp_data->humidity;
+//	  itoa(comp_data.temperature, Sum_s[0], 10);
+//	  itoa(comp_data.humidity, Sum_s[1], 10);
+//	  for(int i=strlen(Sum_s[0]); i<=3; i++){
+//		  Sum_s[0][i]=' ';
+//	  }
+//
+//	  for(int i=strlen(Sum_s[1]); i<=3; i++){
+//		  Sum_s[1][i]=' ';
+//	  }
+	  sprintf(Temp, "%f",comp_data.temperature);
+	  sprintf(Hum, "%f",comp_data.humidity);
 	  HAL_Delay(1000);
-	  HAL_UART_Transmit(&huart1,Sum_s[0],4,HAL_MAX_DELAY);
-	  HAL_UART_Transmit(&huart1,Sum_s[1],4,HAL_MAX_DELAY);
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
+	  HAL_Delay(2000);
+	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
+	  bme280_get_sensor_data(BME280_HUM, &comp_data,&dev);
+//	  HAL_UART_Transmit(&huart1,temp,4,HAL_MAX_DELAY);
+//	  HAL_UART_Transmit(&huart1,hum,4,HAL_MAX_DELAY);
+	  HAL_UART_Transmit(&huart1,Temp,4,HAL_MAX_DELAY);
+	  HAL_UART_Transmit(&huart1,Hum,4,HAL_MAX_DELAY);
 //	  HAL_UART_Transmit(&huart1,adc_buffer,strlen(adc_buffer),HAL_MAX_DELAY);
 //	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
 //	  HAL_SPI_Receive(&hspi2, tempbuff, 13, 1000);
