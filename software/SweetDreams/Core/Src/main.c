@@ -82,6 +82,7 @@ struct bme280_dev dev;
 struct bme280_data comp_data;
 void BMA456_SPI_Read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len_addr, uint32_t len_data);
 void BMA456_SPI_Write(uint8_t reg_addr, uint8_t reg_data);
+int Tensometr(uint16_t *adcbuffer );
 uint8_t BMA456_Check_Connection();
 uint8_t data_read[6];
 //void SendMSG(char* cmd){
@@ -164,7 +165,7 @@ int main(void)
   MX_RTC_Init();
   /* USER CODE BEGIN 2 */
   HAL_Delay(800);
-  HAL_ADC_Start_DMA(&hadc, adc_buffer,64);
+  HAL_ADC_Start_DMA(&hadc, adc_buffer,32);
   //HAL_UART_Receive_IT(&huart1,  received_byte,2);
 
   //HAL_UART_IRQHandler(&huart1);
@@ -184,6 +185,7 @@ int main(void)
   }
   HAL_Delay(100);
   stream_sensor_data_normal_mode(&dev);
+  BMA456_Init();
   //uint8_t rslt_bme = BME280_Check_Connection(&hspi1);
 
 //  // HAL_Delay(1000);
@@ -272,8 +274,7 @@ int main(void)
  // char Sum_s[2][4];
 char Temp[10];
 char Hum[10];
-  rslt_bma=100;
-  rslt_bme=150;
+
 
 //  itoa(rslt_bma, Sum_s[0], 10);
 //  itoa(rslt_bme, Sum_s[1], 10);
@@ -300,23 +301,31 @@ char Hum[10];
 //	  for(int i=strlen(Sum_s[1]); i<=3; i++){
 //		  Sum_s[1][i]=' ';
 //	  }
+	  char TempCala[20] = "Temperatura: ";
+	  char HumCala[20] = "Wilgotnosc: ";
+	  bme280_get_sensor_data(BME280_HUM, &comp_data,&dev);
 	  sprintf(Temp, "%f",comp_data.temperature);
 	  sprintf(Hum, "%f",comp_data.humidity);
 	  HAL_Delay(1000);
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_SET);
+	  HAL_Delay(1000);
+	  if(Tensometr(adc_buffer)){
+		  HAL_UART_Transmit(&huart1,"Lezy\r\n", 6,HAL_MAX_DELAY);;
+	  }
+	  else{
+		  HAL_UART_Transmit(&huart1,"Nie lezy\r\n", 10,HAL_MAX_DELAY);
+	  }
 	  HAL_Delay(2000);
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
-	  bme280_get_sensor_data(BME280_HUM, &comp_data,&dev);
-	  BMA456_Get_Sensor_Data(data_read);
+
 //	  HAL_UART_Transmit(&huart1,temp,4,HAL_MAX_DELAY);
 //	  HAL_UART_Transmit(&huart1,hum,4,HAL_MAX_DELAY);
-	  HAL_UART_Transmit(&huart1,Temp,4,HAL_MAX_DELAY);
-	  HAL_UART_Transmit(&huart1,Hum,4,HAL_MAX_DELAY);
-//	  HAL_UART_Transmit(&huart1,adc_buffer,strlen(adc_buffer),HAL_MAX_DELAY);
-//	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-//	  HAL_SPI_Receive(&hspi2, tempbuff, 13, 1000);
-//
-//	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+	  strncat(TempCala,Temp,4);
+	  strncat(HumCala,Hum,4);
+	  strcat(TempCala,"\r\n");
+	  strcat(HumCala,"\r\n");
+	  HAL_UART_Transmit(&huart1,TempCala,19,HAL_MAX_DELAY);
+	  HAL_UART_Transmit(&huart1,HumCala,18,HAL_MAX_DELAY);
 	    HAL_SuspendTick();
 
 	  HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 0x5A56, RTC_WAKEUPCLOCK_RTCCLK_DIV16);
@@ -608,6 +617,21 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+int Tensometr(uint16_t *adcbuffer ){
+	int suma = 0;
+	for(uint8_t i; i<sizeof(adcbuffer); i++){
+		suma += adcbuffer[i];
+
+	}
+	suma=suma/sizeof(adcbuffer);
+	if(suma < 24000){
+		return 0;
+	}
+	else{
+		return 1;
+	}
+
+}
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc){
 
 
