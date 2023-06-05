@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "bme280.h"
+#include "bma456.h"
 #include <stdio.h>
 #include <string.h>
 /* USER CODE END Includes */
@@ -79,7 +80,10 @@ static void MX_RTC_Init(void);
 #define SENSOR_BUS hspi1;
 struct bme280_dev dev;
 struct bme280_data comp_data;
-
+void BMA456_SPI_Read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len_addr, uint32_t len_data);
+void BMA456_SPI_Write(uint8_t reg_addr, uint8_t reg_data);
+uint8_t BMA456_Check_Connection();
+uint8_t data_read[6];
 //void SendMSG(char* cmd){
 //	  ble_msg_len= strlen(cmd);
 //
@@ -97,29 +101,7 @@ struct bme280_data comp_data;
 //
 //
 //}
-uint8_t BMA456_Check_Connection()
-{
-	uint8_t reg_addr = 0x00;
-	reg_addr |= 0x80;
-	uint8_t reg_addr_tab[2];
-	reg_addr_tab[0] = reg_addr;
-	uint8_t reg_data[2];
 
-	do{
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
-
-    HAL_SPI_TransmitReceive(&hspi1, reg_addr_tab,reg_data, 2, 1000);
-
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
-	}while(reg_data[1] != 0x16);
-
-    //if( reg_data[1] == 0x16)
-    //{
-    	return 1;
-    //}else{
-    	//return 0;
-    //}
-}
 //uint8_t BME280_Check_Connection(void *intf_ptr)
 //{
 //	uint8_t reg_addr = 0xD0;
@@ -325,6 +307,7 @@ char Hum[10];
 	  HAL_Delay(2000);
 	  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1, GPIO_PIN_RESET);
 	  bme280_get_sensor_data(BME280_HUM, &comp_data,&dev);
+	  BMA456_Get_Sensor_Data(data_read);
 //	  HAL_UART_Transmit(&huart1,temp,4,HAL_MAX_DELAY);
 //	  HAL_UART_Transmit(&huart1,hum,4,HAL_MAX_DELAY);
 	  HAL_UART_Transmit(&huart1,Temp,4,HAL_MAX_DELAY);
@@ -656,6 +639,7 @@ void BME280_SPI_Write(uint8_t reg_addr, uint8_t *reg_data, uint32_t len)
 
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 }
+
 void stream_sensor_data_normal_mode(struct bme280_dev *dev)
 {
 	//int8_t rslt;
@@ -677,7 +661,97 @@ void stream_sensor_data_normal_mode(struct bme280_dev *dev)
 	bme280_set_sensor_settings(settings_sel, dev);
 	bme280_set_sensor_mode(BME280_NORMAL_MODE, dev);
 
-	//printf("Temperature, Humidity\r\n");
+}
+
+uint8_t BMA456_Check_Connection()
+{
+	uint8_t reg_addr = 0x00;
+	reg_addr |= 0x80;
+	uint8_t reg_addr_tab[2];
+	reg_addr_tab[0] = reg_addr;
+	uint8_t reg_data[2];
+
+	do{
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+
+    HAL_SPI_TransmitReceive(&hspi1, reg_addr_tab,reg_data, 2, 1000);
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+	}while(reg_data[1] != 0x16);
+
+    return 1;
+
+}
+
+void BMA456_Init()
+{
+//  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
+
+	//BMA456_SPI_Write(BMA456_PWR_CONF, 0x02, &hspi2);
+	//HAL_Delay(10);
+
+	//BMA456_SPI_Write(BMA456_PWR_CTRL, 0x00, &hspi2);
+	//HAL_Delay(10);
+
+	BMA456_SPI_Write(BMA456_CMD, 0xB6);
+	HAL_Delay(10);
+
+	BMA456_SPI_Write(BMA456_PWR_CONF, 0x00);
+	HAL_Delay(10);
+
+	BMA456_SPI_Write(BMA456_INIT_CTRL, 0x00);
+	HAL_Delay(10);
+
+	BMA456_SPI_Write(BMA456_INIT_CTRL, 0x01);
+	HAL_Delay(10);
+
+	HAL_Delay (150);
+
+	BMA456_SPI_Write(BMA456_PWR_CTRL, 0x04);
+	HAL_Delay(10);
+
+	BMA456_SPI_Write(BMA456_ACC_CONF, 0x17);
+	HAL_Delay(10);
+
+	BMA456_SPI_Write(BMA456_PWR_CONF, 0x03);
+	HAL_Delay(10);
+}
+
+void BMA456_Get_Sensor_Data(uint8_t *data_read)
+{
+	uint8_t reg_addr = 0x12;
+	reg_addr |= 0x80;
+	uint8_t data_sent[6];
+	data_sent[0] = reg_addr;
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+	HAL_SPI_TransmitReceive(&hspi1, data_sent, data_read, 6, 100);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+
+}
+void BMA456_SPI_Read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len_addr, uint32_t len_data)
+{
+	reg_addr |= 0x80;
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+
+    HAL_SPI_Transmit(&hspi1, &reg_addr, len_addr, 1000);
+	HAL_SPI_Receive(&hspi1, reg_data, len_data, 1000);
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+
+}
+void BMA456_SPI_Write(uint8_t reg_addr, uint8_t reg_data)
+{
+	uint8_t reg_data_tab[2];
+	reg_data_tab[0] = reg_addr & 0x7F;
+	reg_data_tab[1] = reg_data;
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
+
+	HAL_SPI_Transmit(&hspi1, reg_data_tab, 2, 1000);
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
 }
 
 //void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
