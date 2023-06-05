@@ -191,7 +191,7 @@ int main(void)
 	  while(1){
 	  BMA456_Get_Sensor_Data(data_read);
 	  int16_t data_read_readable[3];
-	  data_read_readable[0] = (int16_t)data_read[1+1]*256 + data_read[0+1];
+	  data_read_readable[0] = (int16_t)data_read[1+1]*256 + data_read[0+1]-220;
 	  data_read_readable[1] = (int16_t)data_read[3+1]*256 + data_read[2+1];
 	  data_read_readable[2] = (int16_t)data_read[5+1]*256 + data_read[4+1];
 	  printf("Output data:\r\n");
