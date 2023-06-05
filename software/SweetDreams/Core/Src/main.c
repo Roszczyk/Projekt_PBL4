@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "bme280.h"
 #include <stdio.h>
 #include <string.h>
 /* USER CODE END Includes */
@@ -75,6 +76,10 @@ static void MX_RTC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+#define SENSOR_BUS hspi1;
+struct bme280_dev dev;
+struct bme280_data comp_data;
+
 void SendMSG(char* cmd){
 	  ble_msg_len= strlen(cmd);
 
@@ -92,7 +97,7 @@ void SendMSG(char* cmd){
 
 
 }
-uint8_t BMA456_Check_Connection(void *intf_ptr)
+uint8_t BMA456_Check_Connection()
 {
 	uint8_t reg_addr = 0x00;
 	reg_addr |= 0x80;
@@ -100,42 +105,43 @@ uint8_t BMA456_Check_Connection(void *intf_ptr)
 	reg_addr_tab[0] = reg_addr;
 	uint8_t reg_data[2];
 
+	do{
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_RESET);
 
-    HAL_SPI_TransmitReceive(intf_ptr, reg_addr_tab,reg_data, 2, 1000);
-	//HAL_SPI_Receive(intf_ptr,  2, 1000);
+    HAL_SPI_TransmitReceive(&hspi1, reg_addr_tab,reg_data, 2, 1000);
 
     HAL_GPIO_WritePin(GPIOA, GPIO_PIN_0, GPIO_PIN_SET);
+	}while(reg_data[1] != 0x16);
 
-    if( reg_data[1] == 0x16)
-    {
+    //if( reg_data[1] == 0x16)
+    //{
     	return 1;
-    }else{
-    	return 0;
-    }
+    //}else{
+    	//return 0;
+    //}
 }
-uint8_t BME280_Check_Connection(void *intf_ptr)
-{
-	uint8_t reg_addr = 0xD0;
-	reg_addr |= 0x80;
-	uint8_t reg_addr_tab[2];
-	reg_addr_tab[0] = reg_addr;
-	uint8_t reg_data[2];
-
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
-
-    HAL_SPI_TransmitReceive(intf_ptr, reg_addr_tab,reg_data, 2, 1000);
-	//HAL_SPI_Receive(intf_ptr,  2, 1000);
-
-    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
-
-    if( reg_data[1] == 0x60)
-    {
-    	return 1;
-    }else{
-    	return 0;
-    }
-}
+//uint8_t BME280_Check_Connection(void *intf_ptr)
+//{
+//	uint8_t reg_addr = 0xD0;
+//	reg_addr |= 0x80;
+//	uint8_t reg_addr_tab[2];
+//	reg_addr_tab[0] = reg_addr;
+//	uint8_t reg_data[2];
+//
+//    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+//
+//    HAL_SPI_TransmitReceive(intf_ptr, reg_addr_tab,reg_data, 2, 1000);
+//	//HAL_SPI_Receive(intf_ptr,  2, 1000);
+//
+//    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+//
+//    if( reg_data[1] == 0x60)
+//    {
+//    	return 1;
+//    }else{
+//    	return 0;
+//    }
+//}
 //void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart);
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc);
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc);
@@ -183,8 +189,17 @@ int main(void)
   HAL_Delay(800);
  // printf("Test UART\r\n");
  // SendMSG("\n");
-  uint8_t rslt_a = BMA456_Check_Connection(&hspi1);
-  uint8_t rslt_e = BME280_Check_Connection(&hspi1);
+  int8_t rslt_bme = bme280_init(&dev);
+  if (rslt_bme != BME280_OK)
+  {
+	  while(1);
+  }
+  uint8_t rslt_bma = BMA456_Check_Connection();
+  if(rslt_bma != 1)
+  {
+	  while(1);
+  }
+  //uint8_t rslt_bme = BME280_Check_Connection(&hspi1);
 
 //  // HAL_Delay(1000);
 //  SendMSG("AT");
@@ -271,11 +286,11 @@ int main(void)
 //  Sum[1] = rslt_e;
   char Sum_s[2][4];
 
-  rslt_a=100;
-  rslt_e=150;
+  rslt_bma=100;
+  rslt_bme=150;
 
-  itoa(rslt_a, Sum_s[0], 10);
-  itoa(rslt_e, Sum_s[1], 10);
+  itoa(rslt_bma, Sum_s[0], 10);
+  itoa(rslt_bme, Sum_s[1], 10);
 
   for(int i=strlen(Sum_s[0]); i<=3; i++){
 	  Sum_s[0][i]=' ';
@@ -595,6 +610,53 @@ void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc){
 
 
 }
+void BME280_SPI_Read(uint8_t reg_addr, uint8_t *reg_data, uint32_t len)
+{
+    reg_addr = reg_addr | 0x80;
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+
+    HAL_SPI_Transmit(&hspi1, &reg_addr, 1, 1000);
+	HAL_SPI_Receive(&hspi1, reg_data, len, 1000);
+
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+}
+
+void BME280_SPI_Write(uint8_t reg_addr, uint8_t *reg_data, uint32_t len)
+{
+    reg_addr = reg_addr & 0x7F;
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+
+    HAL_SPI_Transmit(&hspi1, &reg_addr, 1, 1000);
+    HAL_SPI_Transmit(&hspi1, reg_data, len, 1000);
+
+    HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
+}
+void stream_sensor_data_normal_mode(struct bme280_dev *dev)
+{
+	//int8_t rslt;
+	uint8_t settings_sel;
+	//struct bme280_data comp_data;
+
+	/* Recommended mode of operation: Indoor navigation */
+	dev->settings.osr_h = BME280_OVERSAMPLING_1X;
+	dev->settings.osr_p = BME280_NO_OVERSAMPLING; // BME280_OVERSAMPLING_16X;
+	dev->settings.osr_t = BME280_OVERSAMPLING_2X;
+	//dev->settings.filter = BME280_FILTER_COEFF_16;
+	//dev->settings.standby_time = BME280_STANDBY_TIME_62_5_MS;
+
+	//settings_sel = BME280_OSR_PRESS_SEL;
+	settings_sel = BME280_OSR_TEMP_SEL; // |= BME280_OSR_TEMP_SEL;
+	settings_sel |= BME280_OSR_HUM_SEL;
+	settings_sel |= BME280_STANDBY_SEL;
+	settings_sel |= BME280_FILTER_SEL;
+	bme280_set_sensor_settings(settings_sel, dev);
+	bme280_set_sensor_mode(BME280_NORMAL_MODE, dev);
+
+	//printf("Temperature, Humidity\r\n");
+}
+
 //void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 //{
 //
