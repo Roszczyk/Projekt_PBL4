@@ -497,6 +497,9 @@ void BMA456_Init()
 	BMA456_SPI_Write(BMA456_INIT_CTRL, 0x00);
 	HAL_Delay(10);
 
+//	BMA456_SPI_Write_tab(BMA456_FEATURES_IN, tabToWrite, 63);
+//	HAL_Delay(100);
+
 	BMA456_SPI_Write(0x41, 0x03);
 	HAL_Delay(10);
 

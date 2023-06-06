@@ -1175,3 +1175,182 @@ Finished building: default.size.stdout
  
 Finished building: BMA456.list
  
+14:35:57 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:197:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  197 |    printf("Output data:\r\n");
+      |    ^~~~~~
+../Core/Src/main.c:197:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "bma456.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+arm-none-eabi-gcc -o "BMA456.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\mikol\OneDrive\Pulpit\repos\Projekt_PBL4\software\BMA456\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMA456.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BMA456.elf
+ 
+arm-none-eabi-size   BMA456.elf 
+arm-none-eabi-objdump -h -S  BMA456.elf  > "BMA456.list"
+   text	   data	    bss	    dec	    hex	filename
+  34832	    484	   1820	  37136	   9110	BMA456.elf
+Finished building: default.size.stdout
+ 
+Finished building: BMA456.list
+ 
+14:41:45 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:523:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  523 |    printf("Output data:\r\n");
+      |    ^~~~~~
+../Core/Src/main.c:523:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "bma456.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+arm-none-eabi-gcc -o "BMA456.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\mikol\OneDrive\Pulpit\repos\Projekt_PBL4\software\BMA456\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMA456.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BMA456.elf
+ 
+arm-none-eabi-size   BMA456.elf 
+arm-none-eabi-objdump -h -S  BMA456.elf  > "BMA456.list"
+   text	   data	    bss	    dec	    hex	filename
+  34832	    484	   1820	  37136	   9110	BMA456.elf
+Finished building: default.size.stdout
+ 
+Finished building: BMA456.list
+ 
+15:08:06 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:130:1: error: expected identifier or '(' before '}' token
+  130 | }
+      | ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:203:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  203 |    printf("Output data:\r\n");
+      |    ^~~~~~
+../Core/Src/main.c:203:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "bma456.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+15:08:39 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:130:1: error: expected identifier or '(' before '}' token
+  130 | }
+      | ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:203:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  203 |    printf("Output data:\r\n");
+      |    ^~~~~~
+../Core/Src/main.c:203:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "bma456.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+15:09:05 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:203:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  203 |    printf("Output data:\r\n");
+      |    ^~~~~~
+../Core/Src/main.c:203:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "bma456.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+arm-none-eabi-gcc -o "BMA456.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\mikol\OneDrive\Pulpit\repos\Projekt_PBL4\software\BMA456\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMA456.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BMA456.elf
+ 
+arm-none-eabi-size   BMA456.elf 
+arm-none-eabi-objdump -h -S  BMA456.elf  > "BMA456.list"
+   text	   data	    bss	    dec	    hex	filename
+  34956	    548	   1820	  37324	   91cc	BMA456.elf
+Finished building: default.size.stdout
+ 
+Finished building: BMA456.list
+ 
+15:11:07 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:203:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  203 |    printf("Output data:\r\n");
+      |    ^~~~~~
+../Core/Src/main.c:203:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "bma456.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+arm-none-eabi-gcc -o "BMA456.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\mikol\OneDrive\Pulpit\repos\Projekt_PBL4\software\BMA456\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMA456.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BMA456.elf
+ 
+arm-none-eabi-size   BMA456.elf 
+arm-none-eabi-objdump -h -S  BMA456.elf  > "BMA456.list"
+   text	   data	    bss	    dec	    hex	filename
+  34832	    484	   1820	  37136	   9110	BMA456.elf
+Finished building: default.size.stdout
+ 
+Finished building: BMA456.list
+ 
+15:17:01 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:209:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  209 |    printf("Output data readable:\r\n");
+      |    ^~~~~~
+../Core/Src/main.c:209:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "bma456.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+arm-none-eabi-gcc -o "BMA456.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\mikol\OneDrive\Pulpit\repos\Projekt_PBL4\software\BMA456\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMA456.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BMA456.elf
+ 
+arm-none-eabi-size   BMA456.elf 
+arm-none-eabi-objdump -h -S  BMA456.elf  > "BMA456.list"
+   text	   data	    bss	    dec	    hex	filename
+  34756	    484	   1820	  37060	   90c4	BMA456.elf
+Finished building: default.size.stdout
+ 
+Finished building: BMA456.list
+ 
+15:20:24 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L073xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:203:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  203 |    printf("Output data:\r\n");
+      |    ^~~~~~
+../Core/Src/main.c:203:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:25:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   24 | #include "bma456.h"
+  +++ |+#include <stdio.h>
+   25 | /* USER CODE END Includes */
+arm-none-eabi-gcc -o "BMA456.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\mikol\OneDrive\Pulpit\repos\Projekt_PBL4\software\BMA456\STM32L073RZTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="BMA456.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: BMA456.elf
+ 
+arm-none-eabi-size   BMA456.elf 
+arm-none-eabi-objdump -h -S  BMA456.elf  > "BMA456.list"
+   text	   data	    bss	    dec	    hex	filename
+  34832	    484	   1820	  37136	   9110	BMA456.elf
+Finished building: default.size.stdout
+ 
+Finished building: BMA456.list
+ 
+15:21:37 **** Incremental Build of configuration Debug for project BMA456 ****
+make -j12 all 
+arm-none-eabi-size   BMA456.elf 
+   text	   data	    bss	    dec	    hex	filename
+  34832	    484	   1820	  37136	   9110	BMA456.elf
+Finished building: default.size.stdout
+ 
