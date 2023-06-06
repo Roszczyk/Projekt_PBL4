@@ -31,7 +31,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define BITES_TO_SEND 8
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -50,7 +50,7 @@ void BMA456_SPI_Write(uint8_t reg_addr, uint8_t reg_data);
 uint8_t BMA456_Check_Connection();
 void BMA456_Init();
 void BMA456_Get_Sensor_Data(uint8_t *data_read);
-uint8_t data_read[7];
+uint8_t data_read[BITES_TO_SEND];
 
 
 
@@ -195,13 +195,16 @@ int main(void)
   {
 	  BMA456_Init();
 	  while(1){
+		  for (int i=0; i<7;i++){
+		 data_read[i]=0xff;
+		  }
 	  BMA456_Get_Sensor_Data(data_read);
 	  int16_t data_read_readable[3];
-	  data_read_readable[0] = (int16_t)data_read[1+1]*256 + data_read[0+1];
-	  data_read_readable[1] = (int16_t)data_read[3+1]*256 + data_read[2+1];
-	  data_read_readable[2] = (int16_t)data_read[5+1]*256 + data_read[4+1];
+	  data_read_readable[0] = (int16_t)data_read[1+2]*256 + data_read[0+2];
+	  data_read_readable[1] = (int16_t)data_read[3+2]*256 + data_read[2+2];
+	  data_read_readable[2] = (int16_t)data_read[5+2]*256 + data_read[4+2];
 	  printf("Output data:\r\n");
-	  for(int i = 1; i<7; i++)
+	  for(int i = 2; i<8; i++)
 	  {
 	   	printf("%x \r\n", data_read[i]);
 	  }
@@ -587,14 +590,14 @@ void BMA456_Init()
 }
 void BMA456_Get_Sensor_Data(uint8_t *data_read)
 {
-	uint8_t reg_addr = 0x11;
+	uint8_t reg_addr = 0x12;
 	reg_addr |= 0x80;
-	uint8_t data_sent[7];
+	uint8_t data_sent[BITES_TO_SEND];
 	data_sent[0] = reg_addr;
 
 	//while(1){
 	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_RESET);
-	  HAL_SPI_TransmitReceive(&hspi2, data_sent, data_read, 7, 100);
+	  HAL_SPI_TransmitReceive(&hspi2, data_sent, data_read, BITES_TO_SEND, 100);
 	  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8, GPIO_PIN_SET);
 
 
