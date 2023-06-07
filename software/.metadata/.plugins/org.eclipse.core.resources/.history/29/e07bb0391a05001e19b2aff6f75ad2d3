@@ -214,10 +214,10 @@ int main(void)
 	  }
 	  for (int i=0; i<3;i++){
 		  if(data_read_readable[i]>1900 && data_read_readable[i]<2500 && data_read_readable[i]>data_read_readable[(i+1)%3] && data_read_readable[i]>data_read_readable[(i+2)%3]){
-		  printf("Grawitacja: %c\r\n", axes[i]);
+		  printf("Grawitacja: %s\r\n", axes[i]);
 	  }
 		  if(data_read_readable[i]<-1900 && data_read_readable[i]>-2500 && data_read_readable[i]<data_read_readable[(i+1)%3] && data_read_readable[i]<data_read_readable[(i+2)%3]){
-		  		  printf("Grawitacja: - %c\r\n", axes[i]);
+		  		  printf("Grawitacja: - %s\r\n", axes[i]);
 		  	  }
 	  }
 	  }
