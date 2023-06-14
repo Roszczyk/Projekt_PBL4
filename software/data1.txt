@@ -1,0 +1,386 @@
+11:40:58.562 Wstaje
+11:40:59.517 Nie lezy
+11:41:00.844 Temperatura: 29.8
+11:41:00.960 Wilgotnosc: 37.7
+11:41:01.168 Grawitacja: -z
+11:41:01.378 Ide spac
+11:41:11.249 Wstaje
+11:41:12.631 Nie lezy
+11:41:13.797 Temperatura: 29.9
+11:41:14.279 Wilgotnosc: 37.7
+11:41:14.282 Grawitacja: -z
+11:41:14.306 Ide spac
+11:41:23.731 Wstaje
+11:41:25.024 Lezy
+11:41:26.216 Temperatura: 29.9
+11:41:26.246 Wilgotnosc: 39.1
+11:41:26.553 Grawitacja: -z
+11:41:26.758 Ide spac
+11:41:26.788 Wstaje
+11:41:28.144 Lezy
+11:41:29.432 Temperatura: 29.9
+11:41:29.435 Wilgotnosc: 39.1
+11:41:29.756 Grawitacja: -z
+11:41:29.967 Ide spac
+11:41:40.350 Wstaje
+11:41:40.766 Nie lezy
+11:41:42.297 Temperatura: 29.9
+11:41:42.478 Wilgotnosc: 39.1
+11:41:42.480 Grawitacja: -z
+11:41:42.706 Ide spac
+11:41:42.749 Wstaje
+11:41:44.006 Nie lezy
+11:41:45.362 Temperatura: 29.9
+11:41:45.388 Wilgotnosc: 39.1
+11:41:45.926 Grawitacja: -z
+11:41:46.319 Ide spac
+11:41:55.437 Wstaje
+11:41:56.700 Nie lezy
+11:41:58.052 Temperatura: 30.0
+11:41:58.118 Wilgotnosc: 39.1
+11:41:58.437 Grawitacja: -z
+11:41:58.617 Ide spac
+11:42:08.337 Wstaje
+11:42:09.448 Nie lezy
+11:42:10.799 Temperatura: 30.0
+11:42:10.858 Wilgotnosc: 39.1
+11:42:11.128 Grawitacja: -z
+11:42:11.341 Ide spac
+11:42:20.878 Wstaje
+11:42:22.437 Nie lezy
+11:42:23.488 Temperatura: 30.0
+11:42:23.489 Wilgotnosc: 37.6
+11:42:24.027 Ide spac
+11:42:24.056 Wstaje
+11:42:25.406 Nie lezy
+11:42:26.699 Temperatura: 30.0
+11:42:26.729 Wilgotnosc: 37.6
+11:42:27.240 Ide spac
+11:42:27.423 Wstaje
+11:42:28.560 Nie lezy
+11:42:29.947 Temperatura: 30.1
+11:42:29.960 Wilgotnosc: 37.6
+11:42:30.605 Ide spac
+11:42:30.762 Wstaje
+11:42:31.775 Nie lezy
+11:42:33.129 Temperatura: 30.1
+11:42:33.149 Wilgotnosc: 37.6
+11:42:33.665 Ide spac
+11:42:33.689 Wstaje
+11:42:35.020 Nie lezy
+11:42:36.337 Temperatura: 30.1
+11:42:36.355 Wilgotnosc: 37.6
+11:42:36.875 Ide spac
+11:42:36.914 Wstaje
+11:42:38.166 Nie lezy
+11:42:39.547 Temperatura: 30.1
+11:42:39.562 Wilgotnosc: 37.6
+11:42:40.077 Ide spac
+11:42:49.619 Wstaje
+11:42:50.888 Nie lezy
+11:42:52.228 Temperatura: 30.1
+11:42:52.231 Wilgotnosc: 37.6
+11:42:52.798 Ide spac
+11:42:52.800 Wstaje
+11:42:54.086 Nie lezy
+11:42:55.700 Temperatura: 30.1
+11:42:55.700 Wilgotnosc: 37.6
+11:42:55.768 Grawitacja: -y
+11:42:56.042 Ide spac
+11:43:05.523 Wstaje
+11:43:06.784 Nie lezy
+11:43:08.134 Temperatura: 30.1
+11:43:08.169 Wilgotnosc: 39.1
+11:43:08.702 Ide spac
+11:43:18.178 Wstaje
+11:43:19.467 Nie lezy
+11:43:20.825 Temperatura: 30.1
+11:43:20.848 Wilgotnosc: 37.6
+11:43:21.362 Ide spac
+11:43:30.876 Wstaje
+11:43:32.166 Nie lezy
+11:43:33.514 Temperatura: 30.1
+11:43:33.529 Wilgotnosc: 37.6
+11:43:34.054 Ide spac
+11:43:43.563 Wstaje
+11:43:44.859 Nie lezy
+11:43:46.198 Temperatura: 30.1
+11:43:46.212 Wilgotnosc: 37.6
+11:43:46.742 Ide spac
+11:43:56.257 Wstaje
+11:43:57.537 Nie lezy
+11:43:58.887 Temperatura: 30.0
+11:43:58.894 Wilgotnosc: 37.6
+11:43:59.428 Ide spac
+11:43:59.461 Wstaje
+11:44:00.720 Nie lezy
+11:44:02.098 Temperatura: 30.0
+11:44:02.101 Wilgotnosc: 37.6
+11:44:02.641 Ide spac
+11:44:02.669 Wstaje
+11:44:03.929 Nie lezy
+11:44:05.277 Temperatura: 30.0
+11:44:05.310 Wilgotnosc: 37.6
+11:44:05.821 Ide spac
+11:44:05.850 Wstaje
+11:44:07.145 Nie lezy
+11:44:08.488 Temperatura: 30.0
+11:44:08.518 Wilgotnosc: 39.1
+11:44:09.028 Ide spac
+11:44:09.057 Wstaje
+11:44:10.348 Nie lezy
+11:44:11.699 Temperatura: 30.0
+11:44:11.727 Wilgotnosc: 39.1
+11:44:12.237 Ide spac
+11:44:12.267 Wstaje
+11:44:13.559 Nie lezy
+11:44:14.907 Temperatura: 30.0
+11:44:14.915 Wilgotnosc: 39.1
+11:44:15.448 Ide spac
+11:44:15.488 Wstaje
+11:44:16.770 Nie lezy
+11:44:18.120 Temperatura: 30.0
+11:44:18.135 Wilgotnosc: 39.1
+11:44:18.660 Ide spac
+11:44:18.688 Wstaje
+11:44:19.980 Nie lezy
+11:44:21.330 Temperatura: 30.0
+11:44:21.334 Wilgotnosc: 39.1
+11:44:21.871 Ide spac
+11:44:21.897 Wstaje
+11:44:23.191 Nie lezy
+11:44:24.537 Temperatura: 30.0
+11:44:24.546 Wilgotnosc: 39.1
+11:44:25.106 Ide spac
+11:44:25.110 Wstaje
+11:44:26.399 Nie lezy
+11:44:27.776 Temperatura: 30.0
+11:44:27.790 Wilgotnosc: 39.1
+11:44:28.291 Ide spac
+11:44:37.798 Wstaje
+11:44:39.120 Nie lezy
+11:44:40.442 Temperatura: 30.0
+11:44:40.446 Wilgotnosc: 37.6
+11:44:40.980 Ide spac
+11:44:50.495 Wstaje
+11:44:51.785 Nie lezy
+11:44:53.150 Temperatura: 29.9
+11:44:53.154 Wilgotnosc: 40.6
+11:44:53.462 Grawitacja: y
+11:44:53.670 Ide spac
+11:44:53.697 Wstaje
+11:44:54.987 Nie lezy
+11:44:56.338 Temperatura: 29.9
+11:44:56.367 Wilgotnosc: 40.6
+11:44:56.698 Grawitacja: y
+11:44:56.908 Ide spac
+11:45:06.417 Wstaje
+11:45:07.707 Lezy
+11:45:09.031 Temperatura: 29.9
+11:45:09.059 Wilgotnosc: 42.1
+11:45:09.571 Ide spac
+11:45:09.600 Wstaje
+11:45:10.890 Nie lezy
+11:45:12.237 Temperatura: 29.9
+11:45:12.269 Wilgotnosc: 43.6
+11:45:12.777 Ide spac
+11:45:12.806 Wstaje
+11:45:14.099 Nie lezy
+11:45:15.448 Temperatura: 29.9
+11:45:15.455 Wilgotnosc: 42.1
+11:45:15.993 Ide spac
+11:45:16.022 Wstaje
+11:45:17.313 Nie lezy
+11:45:18.659 Temperatura: 29.9
+11:45:18.667 Wilgotnosc: 42.1
+11:45:19.198 Ide spac
+11:45:19.229 Wstaje
+11:45:20.519 Nie lezy
+11:45:21.868 Temperatura: 29.9
+11:45:21.872 Wilgotnosc: 42.1
+11:45:22.410 Ide spac
+11:45:31.918 Wstaje
+11:45:33.209 Nie lezy
+11:45:34.558 Temperatura: 29.9
+11:45:34.590 Wilgotnosc: 40.6
+11:45:35.098 Ide spac
+11:45:35.128 Wstaje
+11:45:36.418 Nie lezy
+11:45:37.767 Temperatura: 29.9
+11:45:37.771 Wilgotnosc: 40.6
+11:45:38.307 Ide spac
+11:45:38.337 Wstaje
+11:45:39.628 Nie lezy
+11:45:40.979 Temperatura: 29.9
+11:45:40.984 Wilgotnosc: 40.6
+11:45:41.523 Ide spac
+11:45:41.553 Wstaje
+11:45:42.839 Nie lezy
+11:45:44.213 Temperatura: 29.9
+11:45:44.219 Wilgotnosc: 40.6
+11:45:44.735 Ide spac
+11:45:44.767 Wstaje
+11:45:46.054 Nie lezy
+11:45:47.408 Temperatura: 29.9
+11:45:47.425 Wilgotnosc: 40.6
+11:45:47.939 Ide spac
+11:45:57.449 Wstaje
+11:45:58.745 Nie lezy
+11:46:00.088 Temperatura: 29.9
+11:46:00.093 Wilgotnosc: 39.1
+11:46:00.629 Ide spac
+11:46:00.658 Wstaje
+11:46:01.949 Nie lezy
+11:46:03.298 Temperatura: 29.8
+11:46:03.302 Wilgotnosc: 39.1
+11:46:03.839 Ide spac
+11:46:13.358 Wstaje
+11:46:14.648 Nie lezy
+11:46:15.994 Temperatura: 29.8
+11:46:16.027 Wilgotnosc: 39.1
+11:46:16.566 Ide spac
+11:46:26.039 Wstaje
+11:46:27.333 Nie lezy
+11:46:28.678 Temperatura: 29.8
+11:46:28.682 Wilgotnosc: 39.1
+11:46:29.218 Ide spac
+11:46:38.729 Wstaje
+11:46:40.032 Nie lezy
+11:46:41.373 Temperatura: 29.8
+11:46:41.378 Wilgotnosc: 37.7
+11:46:41.699 Grawitacja: -x
+11:46:41.939 Ide spac
+11:46:51.451 Wstaje
+11:46:52.710 Nie lezy
+11:46:54.088 Temperatura: 29.8
+11:46:54.093 Wilgotnosc: 37.7
+11:46:54.628 Ide spac
+11:47:04.141 Wstaje
+11:47:05.428 Nie lezy
+11:47:06.779 Temperatura: 29.8
+11:47:06.792 Wilgotnosc: 37.7
+11:47:07.318 Ide spac
+11:47:07.348 Wstaje
+11:47:08.609 Nie lezy
+11:47:09.959 Temperatura: 29.8
+11:47:09.990 Wilgotnosc: 37.7
+11:47:10.530 Ide spac
+11:47:10.535 Wstaje
+11:47:11.819 Nie lezy
+11:47:13.171 Temperatura: 29.8
+11:47:13.201 Wilgotnosc: 37.7
+11:47:13.713 Ide spac
+11:47:13.745 Wstaje
+11:47:15.030 Nie lezy
+11:47:16.379 Temperatura: 29.8
+11:47:16.410 Wilgotnosc: 37.7
+11:47:16.920 Ide spac
+11:47:16.951 Wstaje
+11:47:18.239 Nie lezy
+11:47:19.590 Temperatura: 29.8
+11:47:19.595 Wilgotnosc: 37.7
+11:47:20.129 Ide spac
+11:47:20.159 Wstaje
+11:47:21.449 Nie lezy
+11:47:22.799 Temperatura: 29.8
+11:47:22.806 Wilgotnosc: 37.7
+11:47:23.159 Grawitacja: -x
+11:47:23.369 Ide spac
+11:47:23.398 Wstaje
+11:47:24.688 Nie lezy
+11:47:26.040 Temperatura: 29.8
+11:47:26.044 Wilgotnosc: 37.7
+11:47:26.373 Grawitacja: -x
+11:47:26.581 Ide spac
+11:47:36.089 Wstaje
+11:47:37.379 Nie lezy
+11:47:38.729 Temperatura: 29.8
+11:47:38.758 Wilgotnosc: 36.2
+11:47:39.269 Ide spac
+11:47:48.781 Wstaje
+11:47:50.070 Nie lezy
+11:47:51.422 Temperatura: 29.7
+11:47:51.466 Wilgotnosc: 36.2
+11:47:51.964 Ide spac
+11:47:51.991 Wstaje
+11:47:53.280 Nie lezy
+11:47:54.634 Temperatura: 29.7
+11:47:54.666 Wilgotnosc: 36.2
+11:47:55.173 Ide spac
+11:47:55.203 Wstaje
+11:47:56.495 Nie lezy
+11:47:57.839 Temperatura: 29.7
+11:47:57.870 Wilgotnosc: 36.2
+11:47:58.378 Ide spac
+11:48:07.889 Wstaje
+11:48:09.179 Nie lezy
+11:48:10.531 Temperatura: 29.7
+11:48:10.560 Wilgotnosc: 36.2
+11:48:11.069 Ide spac
+11:48:11.099 Wstaje
+11:48:12.390 Nie lezy
+11:48:13.741 Temperatura: 29.7
+11:48:13.770 Wilgotnosc: 36.2
+11:48:14.281 Ide spac
+11:48:14.309 Wstaje
+11:48:15.600 Nie lezy
+11:48:16.959 Temperatura: 29.7
+11:48:16.990 Wilgotnosc: 36.2
+11:48:17.494 Ide spac
+11:48:17.522 Wstaje
+11:48:18.829 Nie lezy
+11:48:20.162 Temperatura: 29.7
+11:48:20.185 Wilgotnosc: 36.2
+11:48:20.699 Ide spac
+11:48:20.729 Wstaje
+11:48:22.022 Nie lezy
+11:48:23.372 Temperatura: 29.7
+11:48:23.391 Wilgotnosc: 36.2
+11:48:23.914 Ide spac
+11:48:33.419 Wstaje
+11:48:34.710 Nie lezy
+11:48:36.059 Temperatura: 29.7
+11:48:36.062 Wilgotnosc: 36.2
+11:48:36.602 Ide spac
+11:48:46.110 Wstaje
+11:48:47.400 Nie lezy
+11:48:48.751 Temperatura: 29.7
+11:48:48.779 Wilgotnosc: 36.2
+11:48:49.290 Ide spac
+11:48:58.831 Wstaje
+11:49:00.092 Nie lezy
+11:49:01.471 Temperatura: 29.7
+11:49:01.477 Wilgotnosc: 36.2
+11:49:02.009 Ide spac
+11:49:11.529 Wstaje
+11:49:12.818 Nie lezy
+11:49:14.163 Temperatura: 29.7
+11:49:14.174 Wilgotnosc: 37.7
+11:49:14.713 Ide spac
+11:49:14.732 Wstaje
+11:49:16.027 Nie lezy
+11:49:17.376 Temperatura: 29.6
+11:49:17.394 Wilgotnosc: 36.2
+11:49:17.912 Ide spac
+11:49:27.421 Wstaje
+11:49:28.717 Nie lezy
+11:49:30.061 Temperatura: 29.6
+11:49:30.067 Wilgotnosc: 36.2
+11:49:30.607 Ide spac
+11:49:30.632 Wstaje
+11:49:31.929 Nie lezy
+11:49:33.286 Temperatura: 29.6
+11:49:33.310 Wilgotnosc: 36.2
+11:49:33.814 Ide spac
+11:49:33.840 Wstaje
+11:49:35.143 Nie lezy
+11:49:36.479 Temperatura: 29.6
+11:49:36.510 Wilgotnosc: 36.2
+11:49:36.810 Grawitacja: -x
+11:49:37.023 Ide spac
+11:49:46.560 Wstaje
+11:49:47.822 Nie lezy
+11:49:49.171 Temperatura: 29.6
+11:49:49.201 Wilgotnosc: 36.2
+11:49:49.531 Grawitacja: -x
+11:49:49.742 Ide spac
