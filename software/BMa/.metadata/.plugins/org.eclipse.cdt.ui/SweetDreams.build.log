@@ -1,0 +1,149 @@
+11:48:41 **** Incremental Build of configuration Debug for project SweetDreams ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m0plus -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L051xx -c -I../Core/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc -I../Drivers/STM32L0xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L0xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:28: warning: passing argument 2 of 'HAL_ADC_Start_DMA' from incompatible pointer type [-Wincompatible-pointer-types]
+  156 |   HAL_ADC_Start_DMA(&hadc, adc_buffer,32);
+      |                            ^~~~~~~~~~
+      |                            |
+      |                            uint16_t * {aka short unsigned int *}
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:208,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_adc.h:1134:75: note: expected 'uint32_t *' {aka 'long unsigned int *'} but argument is of type 'uint16_t *' {aka 'short unsigned int *'}
+ 1134 | HAL_StatusTypeDef    HAL_ADC_Start_DMA(ADC_HandleTypeDef *hadc, uint32_t *pData, uint32_t Length);
+      |                                                                 ~~~~~~~~~~^~~~~
+../Core/Src/main.c:171:3: warning: implicit declaration of function 'stream_sensor_data_normal_mode' [-Wimplicit-function-declaration]
+  171 |   stream_sensor_data_normal_mode(&dev);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:172:3: warning: implicit declaration of function 'BMA456_Init' [-Wimplicit-function-declaration]
+  172 |   BMA456_Init();
+      |   ^~~~~~~~~~~
+../Core/Src/main.c: In function 'Tensometr':
+../Core/Src/main.c:593:30: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  593 |    HAL_UART_Transmit(&huart1,"Lezy\r\n", 6,HAL_MAX_DELAY);
+      |                              ^~~~~~~~~~
+      |                              |
+      |                              char *
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:281,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1510:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1510 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:596:30: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  596 |    HAL_UART_Transmit(&huart1,"Nie lezy\r\n", 10,HAL_MAX_DELAY);
+      |                              ^~~~~~~~~~~~~~
+      |                              |
+      |                              char *
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:281,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1510:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1510 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'Sleep':
+../Core/Src/main.c:603:28: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  603 |  HAL_UART_Transmit(&huart1,"Ide spac\r\n", 10,HAL_MAX_DELAY);
+      |                            ^~~~~~~~~~~~~~
+      |                            |
+      |                            char *
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:281,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1510:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1510 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:610:31: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  610 |     HAL_UART_Transmit(&huart1,"Wstaje\r\n", 8,HAL_MAX_DELAY);
+      |                               ^~~~~~~~~~~~
+      |                               |
+      |                               char *
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:281,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1510:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1510 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'BME_PRINT':
+../Core/Src/main.c:623:28: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  623 |  HAL_UART_Transmit(&huart1,TempCala,19,HAL_MAX_DELAY);
+      |                            ^~~~~~~~
+      |                            |
+      |                            char *
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:281,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1510:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1510 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:624:28: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  624 |  HAL_UART_Transmit(&huart1,HumCala,18,HAL_MAX_DELAY);
+      |                            ^~~~~~~
+      |                            |
+      |                            char *
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:281,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1510:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1510 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'BMA_PRINT':
+../Core/Src/main.c:669:31: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  669 |     HAL_UART_Transmit(&huart1,Grawitacja,15,HAL_MAX_DELAY);
+      |                               ^~~~~~~~~~
+      |                               |
+      |                               char *
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:281,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1510:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1510 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c:676:32: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  676 |      HAL_UART_Transmit(&huart1,Grawitacja,18,HAL_MAX_DELAY);
+      |                                ^~~~~~~~~~
+      |                                |
+      |                                char *
+In file included from ../Core/Inc/stm32l0xx_hal_conf.h:281,
+                 from ../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32L0xx_HAL_Driver/Inc/stm32l0xx_hal_uart.h:1510:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+ 1510 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:712:6: warning: conflicting types for 'stream_sensor_data_normal_mode'
+  712 | void stream_sensor_data_normal_mode(struct bme280_dev *dev)
+      |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:171:3: note: previous implicit declaration of 'stream_sensor_data_normal_mode' was here
+  171 |   stream_sensor_data_normal_mode(&dev);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:755:6: warning: conflicting types for 'BMA456_Init'
+  755 | void BMA456_Init()
+      |      ^~~~~~~~~~~
+../Core/Src/main.c:172:3: note: previous implicit declaration of 'BMA456_Init' was here
+  172 |   BMA456_Init();
+      |   ^~~~~~~~~~~
+arm-none-eabi-gcc -o "SweetDreams.elf" @"objects.list"   -mcpu=cortex-m0plus -T"C:\Users\jasie\STM32CubeIDE\BMa\SweetDreams\STM32L051K8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="SweetDreams.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: SweetDreams.elf
+ 
+arm-none-eabi-size   SweetDreams.elf 
+arm-none-eabi-objdump -h -S  SweetDreams.elf  > "SweetDreams.list"
+   text	   data	    bss	    dec	    hex	filename
+  48480	    488	   2184	  51152	   c7d0	SweetDreams.elf
+Finished building: default.size.stdout
+ 
+Finished building: SweetDreams.list
+ 
+
+11:48:48 Build Finished. 0 errors, 13 warnings. (took 6s.468ms)
+
