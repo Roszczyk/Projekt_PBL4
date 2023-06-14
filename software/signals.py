@@ -24,14 +24,12 @@ def initFile(fileName): #odczytanie danych z pliku i stworzenie obiektów danych
         if line_array[0]=="Wilgotnosc:":
             moisture.append(float(line_array[1]))
         if line_array[0]=="Grawitacja:":
-            # print(line_array)
             if line_array[1]=="-z":
-                accelerometer.append(50)
+                accelerometer.append(1*50)
             else:
                 accelerometer.append(0)
         if line_array[0]=="Lezy":
-            print("chuj")
-            tensometer.append(50)
+            tensometer.append(1*50)
         if line_array[0]=="Nie" and line_array[1]=="lezy":
             tensometer.append(0)
         if line_array[0]=="Wstaje":
